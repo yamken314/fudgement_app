@@ -31,16 +31,20 @@ RSpec.describe User, type: :model do
   end
 
   it "emailで無効な文字列を拒否する" do
-    valid_addresses = %w[user@foo,com user_at_foo.org example.user@foo.foo@bar_baz.com foo@bar+baz.com foo@bar..com]
-    valid_addresses.each do |invalid|
-      expect(FactoryBot.build(:user, email: invalid)).to be_invalid
+    invalid_addresses = %w[user@example,com user_at_foo.org user.name@example. 
+                          foo@bar_baz.com foo@bar+baz.com ]
+    invalid_addresses.each do |invalid_address|
+      @user = FactoryBot.build(:user, email: invalid_addresses)
+      @user.valid?
+      expect(@user.errors.messages[:email]).to include("は不正な値です")
     end
   end
-
+  
   it "同じユーザーは登録出来ない" do
-    duplicate = @user.dup
-    @user.save!
-    duplicate.save!
+    duplicate = FactoryBot.build(:user)
+    @user.save
+    duplicate.save
+    duplicate.valid?
     expect(duplicate).to_not be_valid
   end
 
