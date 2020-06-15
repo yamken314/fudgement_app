@@ -1,14 +1,25 @@
 <div class= "side-bar col-md-2 col-xs-3">
     <div class= "menu">
       <ul >
+      <%if logged_in? %>
         <li><%=link_to "ホーム",root_path%></li>
-        <li><%=link_to "ログイン",'#'%></li>
+        <li><%=link_to "プロフィール",current_user%></li>
+        <li><%=link_to "タイムライン",'#'%></li>
+        <li><%=link_to "アイテム",'#'%></li>
+        <li><%=link_to "men",'#'%></li>
+        <li><%=link_to "women",'#'%></li>
+        <li><%=link_to "kids",'#'%></li>
+        <li><%=link_to "ログアウト",login_path, method: :delete%></li>
+        <%else%>
+        <li><%=link_to "ホーム",root_path%></li>
         <li><%=link_to "新規",signup_path%></li>
+        <li><%=link_to "ログイン",login_path%></li>
         <li><%=link_to "アイテム",'#'%></li>
         <li><%=link_to "タイムライン",'#'%></li>
         <li><%=link_to "men",'#'%></li>
         <li><%=link_to "women",'#'%></li>
         <li><%=link_to "kids",'#'%></li>
+        <%end%>
       </ul>
     </div>
 </div>
