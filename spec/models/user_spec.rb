@@ -63,4 +63,8 @@ RSpec.describe User, type: :model do
     @user.password = @user.password_confirmation = "a"*5
     expect(@user).to_not be_valid
   end
+
+  it "authenticated?実行時,ユーザーのダイジェストがnilならfalseを返す" do
+    expect(@user.authenticated?('')).to eq false
+  end
 end
