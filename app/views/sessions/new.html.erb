@@ -5,6 +5,10 @@
       <%= f.email_field :email, class:'form-control'%>
       <%= f.label :password,"パスワード"%>
       <%= f.password_field :password, class: 'form-control' %>
+      <%= f.label :remember_me, class:"checkbox inline" do%>
+        <%= f.check_box :remember_me%>
+        <span>次回から自動ログイン</span>
+      <%end%>
       <%= f.submit "ログイン", class: "btn btn-dark w-100" %>
     <% end %>
   </div>
