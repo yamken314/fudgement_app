@@ -2,19 +2,22 @@
   <%= form_for(@micropost) do |f| %>
   <%= render 'shared/error_messeges', object: f.object%>
     <div class="field col-md-12">
+      <span class="picture">
+        <%= f.file_field :picture %>
+      </span>
       <%= f.text_area :content, placeholder: "コメントを記入して下さい",class: "content" %>
     </div>
       <div class="No-1 col-md-6">
-        <%= f.text_area :content, placeholder: "No-1",class: "number" %>
+        <%= f.text_area :vote_1, placeholder: "No-1",class: "number" %>
       </div>
       <div class="No-2 col-md-6">
-        <%= f.text_area :content, placeholder: "No-2",class: "number" %>
+        <%= f.text_area :vote_2, placeholder: "No-2",class: "number" %>
       </div>
       <div class="No-3 col-md-6">
-        <%= f.text_area :content, placeholder: "No-3",class: "number" %>
+        <%= f.text_area :vote_3, placeholder: "No-3",class: "number" %>
       </div>
       <div class="No-4 col-md-6">
-        <%= f.text_area :content, placeholder: "No-4",class: "number" %>
+        <%= f.text_area :vote_4, placeholder: "No-4",class: "number" %>
       </div>
 </div>
 <div class="judgement-btn col-md-6 col-md-offset-6">
