@@ -13,17 +13,16 @@
    box-sizing:         border-box;
  }
  
- 
-.row.Masonry-2 {
-  column-count: 2;
-  column-gap: 0;
-}
-.row.Masonry-3 {
+ .container {
+  margin: 3% auto;
+  padding: 5px;
+  background-color: #fff;
   column-count: 3;
   column-gap: 0;
 }
-.Masonry-2 .col-md-6,
-.Masonry-3 .col-md-4 {
+
+
+.masonry {
   float: none;
   width: 100%;
   -webkit-column-break-inside: avoid;
@@ -36,16 +35,6 @@
       column-count: 1;
   }
 }
-.box-1{
-  background-color: rgb(105, 23, 23);
-}
-.box-2{
-  background-color: rgb(185, 196, 185);
-}
-.box-3{
-  background-color: rgb(211, 199, 223);
-}
-
 
 
 @media screen and (max-width: 599px){
@@ -60,12 +49,11 @@
 
 .side-bar{
   background-color: darken($color: #d3cbcb, $amount: 0);
-  height:auto;
-  position: sticky;
+  border-radius: 10px;
+  text-align: center;
   ul{
-    margin-top: 50px;
-    margin-bottom: 20px;
-    padding-left: 24px;
+    text-align: center;
+    padding-left: 0px;
     li{
       margin-bottom: 20px;
       list-style: none;
@@ -166,13 +154,11 @@ input {
 
 .back-1{
   background-color: #7f9ccaf5;
-  margin-top: 100px;
-  padding-top: 100px;
-  height: auto;
   border-radius: 10px;
+  padding-top: 20%;
 }
 .judgement-btn{
-  margin-top: 50px;
+  text-align: center;
 }
 
 .btn-border {
@@ -207,7 +193,7 @@ input {
 
 .post_details{
   background-color: #7f9ccaf5;
-  margin-top: 100px;
+  margin-top: 10px;
   height: auto;
   border-radius: 10px;
   padding: 20px;

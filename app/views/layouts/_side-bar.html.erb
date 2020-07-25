@@ -1,4 +1,5 @@
-<div class= "side-bar col-md-2 col-xs-3">
+<div class= "col-md-4 col-xs-3 masonry">
+    <div class= "side-bar">
       <ul >
       <%if logged_in? %>
         <li><%=link_to "Home",root_path%></li>
@@ -15,6 +16,7 @@
         <li><%=link_to "Login",login_path%></li>
         <%end%>
       </ul>
+    </div>
 </div>
 
 <div class= "top-menu ">

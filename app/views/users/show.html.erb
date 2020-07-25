@@ -1,7 +1,6 @@
 <% @comment.each do |comment|%>
-<div class= "row">
-    <div class="col-md-4 col-md-offset-2 ">
-        <div class="post_details">
+    <div class="col-md-4 masonry">
+        <div class="post_details ">
             <div class= "user_info">
                 <%= gravatar_for current_user%>
                 <span class="user"><%= current_user.name %></span>
@@ -46,5 +45,4 @@
             </div>
         </div>
     </div>
-</div>
 <% end %>
