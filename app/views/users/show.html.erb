@@ -5,10 +5,12 @@
                 <%= gravatar_for current_user%>
                 <span class="user"><%= current_user.name %></span>
             </div>
-            <%if comment.picture? %>
+            <%if comment.images.attached? %>
+              <%comment.images.each do |image|%>
             <div class="picture">
-                <%= image_tag comment.picture.url, class: "img" %>
+                <%= image_tag image, class: "img" %>
             </div>
+              <% end%>
             <% end%>
             <div class= "comment">
                 <p><%= comment.content%></p>

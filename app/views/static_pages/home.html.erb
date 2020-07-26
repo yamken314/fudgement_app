@@ -6,10 +6,12 @@
                         <%= gravatar_for user%>
                         <span class="user"><%= user.name %></span>
                     </div>
-                  <%if micropost.picture? %>
+                  <%if micropost.images.attached? %>
+                    <%micropost.images.each do |image|%>
                     <div class="picture">
-                        <%= image_tag micropost.picture.url, class: "img" %>
+                        <%= image_tag image, class: "img" %>
                     </div>
+                    <% end%>
                   <% end%>
                     <div class= "comment">
                         <p><%= micropost.content%></p>

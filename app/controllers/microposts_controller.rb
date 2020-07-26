@@ -22,6 +22,6 @@ class MicropostsController < ApplicationController
   private
 
     def micropost_params
-      params.require(:micropost).permit(:content,:vote_1,:vote_2,:vote_3,:vote_4,:picture)
+      params.require(:micropost).permit(:content,:vote_1,:vote_2,:vote_3,:vote_4,images: [])
     end
 end
