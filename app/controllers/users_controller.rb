@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only:[:index, :edit, :update, :destroy]
-  before_action :currect_user, only:[:edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :currect_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
 
   def index
@@ -8,10 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    if logged_in?
-    @comment = current_user.microposts.all.order(created_at: :desc)
-    end
+    @microposts = current_user.microposts.all.includes(images_attachments: :blob).sorted
   end
 
   def new
@@ -35,7 +32,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
+    if @user.update!(user_params)
       flash[:succces] = "編集しました"
       redirect_to @user
     else
@@ -49,20 +46,18 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
-
   private
-  
-      def user_params
-        params.require(:user).permit(:name,:email,:password,:password_confirmation)
-      end
 
-      def currect_user
-        @user = User.find(params[:id])
-        redirect_to(root_url) unless current_user?(@user)
-      end
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
 
-      def admin_user
-        redirect_to(root_url)unless current_user.admin?
-      end
-      
+  def currect_user
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless current_user?(@user)
+  end
+
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
+  end
 end

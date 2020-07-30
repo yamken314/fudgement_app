@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-    @users = User.includes(microposts: [images_attachments: :blob])
+    @microposts = Micropost.all.includes(:user, images_attachments: :blob).sorted
   end
 
   def help
