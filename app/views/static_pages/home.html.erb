@@ -1,53 +1,50 @@
-<% @users.each do |user| %>
-  <% user.microposts.each do |micropost|%>
-            <div class="col-md-4 masonry">
-                <div class="post_details">
-                    <div class= "user_info">
-                        <%= gravatar_for user%>
-                        <span class="user"><%= user.name %></span>
-                    </div>
-                  <%if micropost.images.attached? %>
-                    <%micropost.images.each do |image|%>
-                    <div class="picture">
-                        <%= image_tag image, class: "img" %>
-                    </div>
-                    <% end%>
-                  <% end%>
-                    <div class= "comment">
-                        <p><%= micropost.content%></p>
-                    </div>
-                  <%if micropost.vote_1?%>
-                    <div class="row">
-                        <div class= "col-md-6">
-                            <div class="vote_1">
-                                <p><%= micropost.vote_1%></p>
-                            </div>
-                        </div>
-                  <% end%>
-                  <%if micropost.vote_2?%>
-                      <div class= "col-md-6">
-                          <div class="vote_2">
-                              <p><%= micropost.vote_2%></p>
-                          </div>
-                      </div>
-                  <% end%>
-                  <%if micropost.vote_3?%>
-                        <div class= "col-md-6">
-                            <div class="vote_3">
-                                <p><%= micropost.vote_3%></p>
-                            </div>
-                        </div>
-                  <% end%>
-                  <%if micropost.vote_4?%>
-                        <div class= "col-md-6">
-                            <div class="vote_4">
-                                <p><%= micropost.vote_4%></p>
-                            </div>
-                        </div>
-                  <% end%>
-                </div>
+<% @microposts.each do |micropost| %>
+  <div class="col-md-4">
+    <div class="post_details">
+      <div class="user_info">
+        <%= gravatar_for micropost.user %>
+        <span class="user"><%= micropost.user.name %></span>
+      </div>
+        <% if micropost.images.attached? %>
+          <% micropost.images.each do |image| %>
+            <div class="picture">
+              <%= image_tag image, class: "img" %>
             </div>
-        </div>
-  <% end %>
-<%end%>
-
+          <% end %>
+        <% end %>
+      <div class="comment">
+        <p><%= micropost.content %></p>
+      </div>
+      <div class="row">
+        <% if micropost.vote_1? %>
+          <div class="col-md-6">
+            <div class="vote_1">
+              <p><%= micropost.vote_1 %></p>
+            </div>
+          </div>
+        <% end %>
+        <% if micropost.vote_2? %>
+          <div class="col-md-6">
+            <div class="vote_2">
+              <p><%= micropost.vote_2 %></p>
+            </div>
+          </div>
+        <% end %>
+        <% if micropost.vote_3? %>
+          <div class="col-md-6">
+            <div class="vote_3">
+              <p><%= micropost.vote_3 %></p>
+            </div>
+          </div>
+        <% end %>
+        <% if micropost.vote_4? %>
+          <div class="col-md-6">
+            <div class="vote_4">
+              <p><%= micropost.vote_4 %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
