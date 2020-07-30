@@ -62,6 +62,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec'
   gem 'bullet'
+  gem 'rubocop'
+  gem 'rubocop-rails'
 end
 
 group :production do
