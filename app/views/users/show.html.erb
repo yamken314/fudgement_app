@@ -3,7 +3,7 @@
     <div class="post_details">
       <div class= "user_info">
         <%= gravatar_for current_user %>
-        <span class="user"><%= current_user.name %></span>
+        <span class="user"><%= micropost.user.name %></span>
       </div>
         <% if micropost.images.attached? %>
           <% micropost.images.each do |image| %>

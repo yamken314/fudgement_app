@@ -16,7 +16,6 @@ class MicropostsController < ApplicationController
 
   def new
     @micropost = current_user.microposts.build if logged_in?
-    
   end
 
   private
