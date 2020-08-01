@@ -1,18 +1,61 @@
-
-
-      
-        <div class= "col-12">
-          <div class="row Masonry-3">
-            <div class="box-1 col-xs-12 col-md-4">
-                【内容1】
+<% @microposts.each do |micropost| %>
+  <div class="item">
+    <div class="post_details">
+      <div class="user_info">
+        <%= gravatar_for micropost.user %>
+        <span class="user"><%= micropost.user.name %></span>
+      </div>
+        <% if micropost.images.attached? %>
+          <% micropost.images.each do |image| %>
+            <div class="picture">
+              <%= image_tag image, class: "img" %>
             </div>
-            <div class="box-2 col-xs-12 col-md-4">
-                【内容2】
-            </div>
-            <div class="box-3 col-xs-12 col-md-4">
-                【内容3】
+          <% end %>
+        <% end %>
+      <div class="comment">
+        <p><%= micropost.content %></p>
+      </div>
+      <div class="row">
+        <% if micropost.vote_1? %>
+          <div class="col-md-6">
+            <div class="vote_1">
+              <p><%= micropost.vote_1 %></p>
             </div>
           </div>
-        </div>
+        <% end %>
+        <% if micropost.vote_2? %>
+          <div class="col-md-6">
+            <div class="vote_2">
+              <p><%= micropost.vote_2 %></p>
+            </div>
+          </div>
+        <% end %>
+        <% if micropost.vote_3? %>
+          <div class="col-md-6">
+            <div class="vote_3">
+              <p><%= micropost.vote_3 %></p>
+            </div>
+          </div>
+        <% end %>
+        <% if micropost.vote_4? %>
+          <div class="col-md-6">
+            <div class="vote_4">
+              <p><%= micropost.vote_4 %></p>
+            </div>
+          </div>
+        <% end %>
       </div>
-
+    </div>
+  </div>
+<% end %>
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script>
+  window.onload = function() {
+    new Masonry('.container',{
+      itemSelector: '.item',
+      columnWidth: 100,
+      gutter: 4
+    });
+  };
+</script>

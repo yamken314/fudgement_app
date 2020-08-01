@@ -37,7 +37,6 @@ gem 'will_paginate',           '3.1.7'
 gem 'bootstrap-will_paginate', '1.0.0'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'bootsnap', require: false
@@ -49,7 +48,6 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'rails-i18n'
-  
 end
 
 group :development do
@@ -60,7 +58,15 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec'
+  gem 'bullet'
+  gem 'rubocop'
+  gem 'rubocop-rails'
 end
+
+group :production do
+  
+  gem 'fog', '1.42'
+  end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver

@@ -10,4 +10,9 @@ RSpec.describe "UsersDelete", type: :request do
     expect{delete user_path(other_user), params: {id: other_user.id}}
     .to change(User, :count).by(-1)
   end
+
+  it "ユーザーを削除すれば、紐ずけられたMicropostは破棄される"do
+    user.microposts.create(content: "おはようございます")
+    expect{user.destroy}.to change(Micropost, :count).by(-1)
+  end
 end

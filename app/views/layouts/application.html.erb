@@ -4,20 +4,19 @@
     <title>Fudgement</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </head>
 
   <body>
-    <div class= "container">
-      <%flash.each do |message_type,message|%>
-        <div class="alert alert-<%=message_type%>"><%=message%></div>
+    <div class="container">
+      <% flash.each do |message_type,message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
       <%end%>
-      <%= render 'layouts/side-bar'%>
+      <%= render 'layouts/side-bar' %>
       <%= yield %>
-      <%= debug(params) if Rails.env.development? %>
     </div>
-    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
+    <%= debug(params) if Rails.env.development? %>
   </body>
 </html>
