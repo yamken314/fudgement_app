@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @microposts = current_user.microposts.all.includes(images_attachments: :blob).sorted
+    @microposts = current_user.microposts.all.with_attached_images.sorted_desc
   end
 
   def new
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update!(user_params)
+    if @user.update_attributes(user_params)
       flash[:succces] = "編集しました"
       redirect_to @user
     else
@@ -50,6 +50,13 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def logged_in_user
+    unless logged_in?
+      flash[:danger] = "ログインして下さい"
+      redirect_to login_url
+    end
   end
 
   def currect_user
