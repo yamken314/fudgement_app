@@ -79,3 +79,4 @@ ActiveRecord::Schema.define(version: 2020_08_01_233058) do
   add_foreign_key "choices", "microposts"
   add_foreign_key "microposts", "users"
 end
+
