@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_02_141222) do
+ActiveRecord::Schema.define(version: 2020_08_02_143840) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -63,6 +63,16 @@ ActiveRecord::Schema.define(version: 2020_08_02_141222) do
     t.string "remember_digest"
     t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  create_table "votes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "choice"
+    t.bigint "user"
+    t.integer "user_id"
+    t.integer "choice_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "choice_id"], name: "index_votes_on_user_id_and_choice_id", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
