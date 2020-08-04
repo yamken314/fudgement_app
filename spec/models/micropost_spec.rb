@@ -6,6 +6,7 @@ RSpec.describe Micropost, type: :model do
     @user = FactoryBot.create(:user)
     @micropost = @user.microposts.create(content: "おはようございます")
   end
+  
   it "Micropostは有効か"do
     expect(@micropost).to be_valid
   end
@@ -21,7 +22,7 @@ RSpec.describe Micropost, type: :model do
   end
 
   it "contentの文字数が140文字以上だったら無効" do
-    @micropost.content = "a"*141
+    @micropost.content = "a" * 141
     expect(@micropost).to_not be_valid
   end
 end

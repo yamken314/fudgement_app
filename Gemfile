@@ -6,7 +6,7 @@ ruby '2.6.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
 # Use mysql as the database for Active Record
-gem 'bootstrap-sass', '3.3.7'
+gem 'bootstrap-sass', '3.4.1'
 # gem 'bootstrap', '~> 4.5.0'
 gem "jquery-rails"
 gem "jquery-ui-rails"
@@ -37,9 +37,6 @@ gem 'will_paginate',           '3.1.7'
 gem 'bootstrap-will_paginate', '1.0.0'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-gem 'carrierwave',             '1.2.2'
-gem 'mini_magick',             '4.7.0'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'bootsnap', require: false
@@ -61,6 +58,9 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec'
+  gem 'bullet'
+  gem 'rubocop'
+  gem 'rubocop-rails'
 end
 
 group :production do

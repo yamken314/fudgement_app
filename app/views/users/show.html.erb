@@ -1,50 +1,50 @@
-<% @comment.each do |comment|%>
-    <div class="col-md-4 masonry">
-        <div class="post_details ">
-            <div class= "user_info">
-                <%= gravatar_for current_user%>
-                <span class="user"><%= current_user.name %></span>
-            </div>
-            <%if comment.images.attached? %>
-              <%comment.images.each do |image|%>
+<% @microposts.each do |micropost| %>
+  <div class="col-md-4">
+    <div class="post_details">
+      <div class= "user_info">
+        <%= gravatar_for current_user %>
+        <span class="user"><%= micropost.user.name %></span>
+      </div>
+        <% if micropost.images.attached? %>
+          <% micropost.images.each do |image| %>
             <div class="picture">
-                <%= image_tag image, class: "img" %>
+              <%= image_tag image, class: "img" %>
             </div>
-              <% end%>
-            <% end%>
-            <div class= "comment">
-                <p><%= comment.content%></p>
+          <% end %>
+        <% end %>
+      <div class="comment">
+        <p><%= micropost.content %></p>
+      </div>
+      <div class="row">
+        <% if micropost.vote_1? %>
+          <div class="col-md-6">
+            <div class="vote_1">
+              <p><%= micropost.vote_1 %></p>
             </div>
-            <%if comment.vote_1?%>
-            <div class="row">
-                <div class= "col-md-6">
-                    <div class="vote_1">
-                        <p><%= comment.vote_1%></p>
-                    </div>
-                </div>
-            <% end%>
-            <%if comment.vote_2?%>
-                <div class= "col-md-6">
-                    <div class="vote_2">
-                        <p><%= comment.vote_2%></p>
-                    </div>
-                </div>
-            <% end%>
-            <%if comment.vote_3?%>
-                <div class= "col-md-6">
-                    <div class="vote_3">
-                        <p><%= comment.vote_3%></p>
-                    </div>
-                </div>
-            <% end%>
-            <%if comment.vote_4?  %>
-                <div class= "col-md-6">
-                    <div class="vote_4">
-                        <p><%= comment.vote_4%></p>
-                    </div>
-                </div>
-            <% end%>
+          </div>
+        <% end %>
+        <% if micropost.vote_2? %>
+          <div class="col-md-6">
+            <div class="vote_2">
+              <p><%= micropost.vote_2 %></p>
             </div>
-        </div>
+          </div>
+        <% end %>
+        <% if micropost.vote_3? %>
+          <div class="col-md-6">
+            <div class="vote_3">
+              <p><%= micropost.vote_3 %></p>
+            </div>
+          </div>
+        <% end %>
+        <% if micropost.vote_4? %>
+          <div class="col-md-6">
+            <div class="vote_4">
+              <p><%= micropost.vote_4 %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
+  </div>
 <% end %>

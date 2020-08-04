@@ -17,7 +17,7 @@ RSpec.feature "Sessions", type: :feature do
     fill_in "パスワード", with: "yamamoto"
     click_button "ログイン" 
     
-    expect(page).to have_content "#{user.name}"
+    expect(page).to have_content "yamamoto"
 
     click_link "ログアウト"
     expect(page).to_not have_content "ログアウト"
