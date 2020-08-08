@@ -1,13 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Relationship, type: :model do
-  let(:user) { FactoryBot.create(:user) }
-  let(:other_user) { FactoryBot.create(:other_user) }
-
-  before do
-    @user = user.active_relationships.create(follower_id: other_user.id, followed_id: user.id)
-  end
-
+  let(:user) { create(:user) }
+  let(:other_user) { create(:other_user) }
+  before { @user = user.follow(other_user) }
   it "Relationshipは有効" do
     @user.valid?
     expect(@user).to be_valid
