@@ -58,4 +58,5 @@ RSpec.configure do |config|
   require 'capybara/rspec'
   config.include IntegretionHelpers, type: :request
   config.include IntegretionHelpers, type: :feature
+  config.include FactoryBot::Syntax::Methods
 end
