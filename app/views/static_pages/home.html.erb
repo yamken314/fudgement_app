@@ -16,33 +16,20 @@
         <p><%= micropost.content %></p>
       </div>
       <div class="row">
-        <% if micropost.vote_1? %>
-          <div class="col-md-6">
-            <div class="vote_1">
-              <p><%= micropost.vote_1 %></p>
+        <% micropost.choices&.each do |choice| %>
+          <% if current_user.voted?(choice) %>
+            <div class="col-md-6">
+              <div class="voted">
+                <p><%= link_to choice.name, choice_vote_path(choice.id), method: :delete %></p>
+              </div>
             </div>
-          </div>
-        <% end %>
-        <% if micropost.vote_2? %>
-          <div class="col-md-6">
-            <div class="vote_2">
-              <p><%= micropost.vote_2 %></p>
+          <% else %>
+              <div class="col-md-6">
+              <div class="vote">
+                <p><%= link_to choice.name, choice_vote_path(choice.id), method: :post %></p>
+              </div>
             </div>
-          </div>
-        <% end %>
-        <% if micropost.vote_3? %>
-          <div class="col-md-6">
-            <div class="vote_3">
-              <p><%= micropost.vote_3 %></p>
-            </div>
-          </div>
-        <% end %>
-        <% if micropost.vote_4? %>
-          <div class="col-md-6">
-            <div class="vote_4">
-              <p><%= micropost.vote_4 %></p>
-            </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -54,8 +41,8 @@
   window.onload = function() {
     new Masonry('.container',{
       itemSelector: '.item',
-      columnWidth: 100,
-      gutter: 4
+      columnWidth: 50,
+      gutter: 3
     });
   };
 </script>

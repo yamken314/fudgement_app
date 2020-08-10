@@ -56,4 +56,8 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
+
+  def voted?(choice)
+    votes.where(choice_id: choice.id).exists?
+  end
 end

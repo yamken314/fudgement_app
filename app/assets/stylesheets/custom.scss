@@ -132,7 +132,8 @@ input {
 .back-1{
   background-color: #7f9ccaf5;
   border-radius: 10px;
-  padding-top: 20%;
+  padding-top: 2%;
+  margin-top: 13%;
 }
 .judgement-btn{
   text-align: center;
@@ -168,18 +169,75 @@ input {
 
 /* show */
 .item{
-  width: 300px;
+  width: 250px;
   margin:5px;
   box-sizing:border-box;
   border-radius:6px;
+  float: left;
+}
+.choice{
+  float: left;
+  padding-top: 5%;
+  .chart{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: #1abc9c;
+    background: conic-gradient(deeppink 20%, #fb3 0, #fb3 30%, #1abc9c 0);
+    margin-right: 10%;
+  }
+  .choice_name{
+    font-size: large;
+  }
 }
 
+.container_show{
+  display: table-row;
+  // flex-direction: column;
+  align-items: center;
+}
 .post_details{
   background-color: #7f9ccaf5;
   margin-top: 10px;
   height: auto;
   border-radius: 10px;
   padding: 20px;
+}
+.post_details_show{
+  background-color: #7f9ccaf5;
+  margin: 2% 5%;
+  height: auto;
+  border-radius: 10px;
+  padding: 20px;
+  width: 52%;
+  align-items: center;
+  float: left;
+}
+.follow_container{
+  width: 250px;
+  float:left;
+  clear: both;
+  .follow_user_info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:10% 0%;
+  }
+.stats{
+  display: flex;
+  justify-content: space-evenly;
+  .follow_list{
+    text-align: center;
+    padding: 1%;
+  }
+ }
+}
+.follow_list{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-top: 10%;
+  border-bottom: solid 2px rgb(133, 133, 133);
 }
 .gravatar{
   border-radius: 50%;
@@ -214,11 +272,12 @@ input {
     margin: 10px;
   }
 }
-.vote_1,.vote_2,.vote_3,.vote_4{
-  background-color: #f1f1f1;
+.voted{
+  background-color: #cac9c9;
   border-radius: 8%;
   height: 80px;
   position: relative;
+  margin-bottom: 10px;
   p {
     word-wrap: break-word;
     font-size: 2rem;
@@ -230,6 +289,20 @@ input {
     transform: translate(-50%, -50%)
     }
   }
-.vote_1,.vote_2{
+.vote{
+  background-color: #f1f1f1;
+  border-radius: 8%;
+  height: 80px;
+  position: relative;
   margin-bottom: 10px;
-}
+  p {
+    word-wrap: break-word;
+    font-size: 2rem;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+    }
+  }
