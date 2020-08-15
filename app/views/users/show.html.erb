@@ -32,48 +32,45 @@
 </div>
 <% @microposts.each do |micropost| %>
   <div class="container_show">
-    <div class="post_details_show">
-      <div class= "user_info">
-        <%= gravatar_for current_user %>
-        <span class="user"><%= micropost.user.name %></span>
-      </div>
-        <% if micropost.images.attached? %>
-          <% micropost.images.each do |image| %>
-            <div class="picture">
-              <%= image_tag image, class: "img" %>
-            </div>
-          <% end %>
-        <% end %>
-      <div class="comment">
-        <p><%= micropost.content %></p>
-      </div>
-      <div class="row">
-        <% micropost.choices&.each do |choice| %>
-          <% if current_user.voted?(choice) %>
-            <div class="col-md-6">
-              <div class="voted">
-                <p><%= link_to choice.name, choice_vote_path(choice.id), method: :delete %></p>
+    <div class="row">
+      <div class="post_details_show">
+        <div class= "user_info">
+          <%= gravatar_for current_user %>
+          <span class="user"><%= micropost.user.name %></span>
+        </div>
+          <% if micropost.images.attached? %>
+            <% micropost.images.each do |image| %>
+              <div class="picture">
+                <%= image_tag image, class: "img" %>
               </div>
-            </div>
-          <% else %>
+            <% end %>
+          <% end %>
+        <div class="comment">
+          <p><%= micropost.content %></p>
+        </div>
+        <div class="row">
+          <% micropost.choices&.each do |choice| %>
+            <% if current_user.voted?(choice) %>
               <div class="col-md-6">
-              <div class="vote">
-                <p><%= link_to choice.name, choice_vote_path(choice.id), method: :post %></p>
+                <div class="voted">
+                  <p><%= link_to choice.name, choice_vote_path(choice.id), method: :delete %></p>
+                </div>
               </div>
-            </div>
+            <% else %>
+              <div class="col-md-6">
+                <div class="vote">
+                  <p><%= link_to choice.name, choice_vote_path(choice.id), method: :post %></p>
+                </div>
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
-    </div>
     <div class="choice">
-    <div class="chart"></div>
-      <ul class="choice_name">
-        <li>No1</li>
-        <li>No2</li>
-        <li>No3</li>
-        <li>No4</li>
-      </ul>
+      <div class="chart"><%= pie_chart micropost.choices.joins(:votes).map { |m| [m.name, m.votes.count] }.to_h,donut: true %></div>
+      <div class="choice_name">
+          <p><% micropost.choices.joins(:votes).map { |m| [m.name, m.votes.count] }.to_h %></p>
+      </div>
     </div>
   </div>
 <% end %>
-
