@@ -68,8 +68,7 @@
       </div>
     <div class="choice">
       <div class="chart"><%= pie_chart micropost.choices.joins(:votes).map { |m| [m.name, m.votes.count] }.to_h,donut: true %></div>
-      <div class="choice_name">
-          <p><% micropost.choices.joins(:votes).map { |m| [m.name, m.votes.count] }.to_h %></p>
+      <div class="chart"><%= pie_chart @choice_join_votes,donut: true %></div>
       </div>
     </div>
   </div>

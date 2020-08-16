@@ -9,6 +9,10 @@ class UsersController < ApplicationController
 
   def show
     @microposts = current_user.microposts.all.includes(:choices).with_attached_images.sorted_desc
+    
+    @microposts.each do |m|
+      @choice_join_votes = m.choices.joins(:votes).map { |m| [m.name, m.votes.count] }.to_h
+    end
   end
 
   def new
