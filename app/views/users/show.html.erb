@@ -48,21 +48,32 @@
         <div class="comment">
           <p><%= micropost.content %></p>
         </div>
-        <div class="row">
-          <% micropost.choices&.each do |choice| %>
-            <% method = current_user.voted?(choice) ? 'delete' : 'post' %>
-            <div class="col-md-6">
-              <div class="<%=current_user.voted?(choice) ? 'voted' : 'vote' %>">
-                <p><%= link_to choice.name, choice_vote_path(choice.id), method: method %></p>
-              </div>
+      <div class="row">
+        <% micropost.choices&.each do |choice| %>
+          <% method = current_user.voted?(choice) ? 'delete' : 'post' %>
+          <div class="col-md-6">
+            <div class="<%=current_user.voted?(choice) ? 'voted' : 'vote' %>">
+              <p><%= link_to choice.name, choice_vote_path(choice.id), method: method %></p>
             </div>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
+    </div>
     <div class="choice">
       <div class="chart"><%= pie_chart micropost.choices.joins(:votes).map { |m| [m.name, m.votes.count] }.to_h,donut: true %></div>
-      <div class="choice_name">
-          <p><% micropost.choices.joins(:votes).map { |m| [m.name, m.votes.count] }.to_h %></p>
+      <div class="row">
+        <% micropost&.choices&.each do |choice| %>
+          <div class="col-md-6">
+            <div class="vote">
+              <p><%= choice.name %></p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="vote">
+              <p><%= choice.votes.count %></p>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

@@ -177,15 +177,7 @@ input {
 }
 .choice{
   float: left;
-  padding-top: 5%;
-  .chart{
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    background: #1abc9c;
-    background: conic-gradient(deeppink 20%, #fb3 0, #fb3 30%, #1abc9c 0);
-    margin-right: 10%;
-  }
+  padding-top: 10%;
   .choice_name{
     font-size: large;
   }
