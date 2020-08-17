@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   delete '/login', to: 'sessions#destroy'
   resources :users
   resources :microposts, only: [:create, :destroy, :new]
-  resources :choices, only: [:create, :destroy] do
+  resources :choices, only: [:post] do
     resource :vote, only: [:create, :destroy]
   end
 end
