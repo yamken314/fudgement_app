@@ -16,11 +16,12 @@ class MicropostsController < ApplicationController
 
   def new
     @micropost = current_user.microposts.build if logged_in?
+    4.times { @micropost.choices.build }
   end
 
   private
 
     def micropost_params
-      params.require(:micropost).permit(:content,:vote_1,:vote_2,:vote_3,:vote_4,images: [])
+      params.require(:micropost).permit(:content, images: [], choices_attributes: [:name])
     end
 end

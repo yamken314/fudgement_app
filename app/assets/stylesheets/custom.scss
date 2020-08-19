@@ -24,8 +24,12 @@
 }}
 
 .side-bar{
-  background-color: darken($color: #d3cbcb, $amount: 0);
-  border-radius: 10px;
+  border-radius: 1.5em;
+  box-shadow: 0 6px #526fa5;
+  background-color: #ffcfdf;
+  background-image: linear-gradient(315deg, #ffcfdf 0%, #b0f3f1 74%);
+  top: 0;
+  transition: .2s box-shadow,.2s top,.4s;
   text-align: center;
   margin-top: 10px;
   ul{
@@ -132,7 +136,8 @@ input {
 .back-1{
   background-color: #7f9ccaf5;
   border-radius: 10px;
-  padding-top: 20%;
+  padding-top: 2%;
+  margin-top: 13%;
 }
 .judgement-btn{
   text-align: center;
@@ -148,7 +153,7 @@ input {
   text-decoration: none;
   font-weight: bold;
   padding: 8px 16px;
-  border-radius: 4px;
+  border-radius: 1.5em;
   transition: .4s;
   margin-bottom: 10px;
 }
@@ -168,18 +173,77 @@ input {
 
 /* show */
 .item{
-  width: 300px;
+  width: 250px;
   margin:5px;
   box-sizing:border-box;
   border-radius:6px;
+  float: left;
+}
+.choice{
+  float: left;
+  width: 43%;
+  padding-top: 2%;
+  .choice_name{
+    font-size: large;
+  }
+}
+#chart-1{
+  height: 300px;
+  width: 300px;
 }
 
+.container_show{
+  display: table-row;
+  align-items: center;
+}
 .post_details{
-  background-color: #7f9ccaf5;
   margin-top: 10px;
-  height: auto;
-  border-radius: 10px;
   padding: 20px;
+  height: auto;
+  border-radius: 1.5em;
+  box-shadow: 0 6px #7295acf5;
+  background: linear-gradient(#FA709A 30%, #FBAB7E 60%, #F7CE68 100%);
+  top: 0;
+  transition: .2s box-shadow,.2s top,.4s
+}
+.post_details_show{
+  align-items: center;
+  float: left;
+  width: 45%;
+  margin: 2% 5%;
+  padding: 20px;
+  height: auto;
+  border-radius: 1.5em;
+  box-shadow: 0 6px #7295acf5;
+  background: linear-gradient(#FA709A 30%, #FBAB7E 60%, #F7CE68 100%);
+  top: 0;
+  transition: .2s box-shadow,.2s top,.4s
+}
+.follow_container{
+  width: 250px;
+  float:left;
+  clear: both;
+  .follow_user_info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:10% 0%;
+  }
+.stats{
+  display: flex;
+  justify-content: space-evenly;
+  .follow_list{
+    text-align: center;
+    padding: 1%;
+  }
+ }
+}
+.follow_list{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-top: 10%;
+  border-bottom: solid 2px rgb(133, 133, 133);
 }
 .gravatar{
   border-radius: 50%;
@@ -205,31 +269,84 @@ input {
 }
 .comment{
   margin: 10px 0 10px 0;
-  height: 80px;
-  background-color: #f1f1f1;
+  background-color: #f3e6e6;
+  border:solid 1px #bbb1a1;
   border-radius: 8px;
+  top: 0;
+  transition: .2s box-shadow,.2s top,.4s;
+  word-wrap: break-word;
   p{
     font-size: 2rem;
-    word-wrap: break-word;
     margin: 10px;
   }
 }
-.vote_1,.vote_2,.vote_3,.vote_4{
-  background-color: #f1f1f1;
-  border-radius: 8%;
-  height: 80px;
-  position: relative;
-  p {
-    word-wrap: break-word;
-    font-size: 2rem;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%)
-    }
+
+.vote {
+  border-radius: 1.5em;
+  color: red($color: #8f8989);
+  box-shadow: 0 6px #864c8d;
+  background-color: #7f5a83;
+  background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);
+  top: 0;
+  transition: .2s box-shadow,.2s top,.4s;
+  a {
+    color: black;
   }
-.vote_1,.vote_2{
-  margin-bottom: 10px;
+}
+.vote:active {
+  box-shadow: 0 5px #7b88a1;
+  top: 1px;
+}
+.voted {
+  border-radius: 1.5em;
+  box-shadow: 0 6px #526fa5;
+  background-color: #f39f86;
+  background-image: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
+  top: 0;
+  transition: .2s box-shadow,.2s top,.4s;
+}
+.voted:active {
+  box-shadow: 0 5px #526fa5;
+  top: 1px;
+}
+button {
+  margin: 0 20px 10px;
+  width: 85%;
+  padding: 1em 2em;
+  border: none;
+  display: inline-block;
+  font-size: 114%;
+  line-height: 1;
+  color: #fff;
+  position: relative;
+  cursor: pointer;
+  a {
+    color: #fff;
+    display: block;
+  }
+}
+table{
+  border-collapse:separate;
+  border-spacing: 5px;
+  width: 100%;
+}
+
+table th,table td{
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px 0;
+}
+
+table th{
+  background-color: #f6d327;
+background-image: linear-gradient(315deg, #f6d327 0%, #de4daa 74%);
+  color: white;
+  border:solid 1px #927141;
+  width: 80%;
+}
+
+table td{
+  background-color: #fee2f8;
+background-image: linear-gradient(315deg, #fee2f8 0%, #dcf8ef 74%);
+  border:solid 1px #af9d85;
 }

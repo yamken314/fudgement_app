@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @microposts = current_user.microposts.all.with_attached_images.sorted_desc
+    @microposts = current_user.microposts.all.includes(:choices).with_attached_images.sorted_desc
   end
 
   def new

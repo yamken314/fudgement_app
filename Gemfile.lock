@@ -76,10 +76,15 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
+    chartable (0.0.0.3)
+      activesupport (>= 3.0.0)
+      chronic (~> 0.10)
+    chartkick (3.3.1)
     childprocess (3.0.0)
     chromedriver-helper (2.1.1)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
+    chronic (0.10.2)
     coderay (1.1.3)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -299,6 +304,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2020.0512)
     mimemagic (0.3.5)
+    mini_magick (4.7.0)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.1)
@@ -484,6 +490,8 @@ DEPENDENCIES
   bullet
   byebug
   capybara (>= 2.15)
+  chartable
+  chartkick
   chromedriver-helper
   coffee-rails (~> 4.2)
   factory_bot_rails
@@ -494,6 +502,7 @@ DEPENDENCIES
   jquery-ui-rails
   launchy (~> 2.4.3)
   listen (>= 3.0.5, < 3.2)
+  mini_magick
   mysql2 (= 0.4.10)
   pry-rails
   puma (~> 3.11)

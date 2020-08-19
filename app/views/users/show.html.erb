@@ -1,6 +1,38 @@
+<div class="follow_container">
+  <div class="follow_user_info">
+    <p class="gravatar_for"><%= gravatar_for current_user %></p>
+    <h4 class="user"><%= current_user.name %></h4>
+  </div>
+  <div class="stats">
+    <div class="follow_stats">
+      <div class="follow">フォロー</div>
+      <div class="follow_count">（ 30 ）</div>
+    </div>
+    <div class="follow_stats">
+      <div class="follow">フォロワー</div>
+      <div class="follow_count">（ 30 ）</div>
+    </div>
+  </div>
+  <div class="follow_list">
+    <p class="gravatar_for"><%= gravatar_for current_user %></p>
+    <p class="user"><%= current_user.name %></p>
+  </div>
+  <div class="follow_list">
+    <p class="gravatar_for"><%= gravatar_for current_user %></p>
+    <p class="user"><%= current_user.name %></p>
+  </div>
+  <div class="follow_list">
+    <p class="gravatar_for"><%= gravatar_for current_user %></p>
+    <p class="user"><%= current_user.name %></p>
+  </div>
+  <div class="follow_list">
+    <p class="gravatar_for"><%= gravatar_for current_user %></p>
+    <p class="user"><%= current_user.name %></p>
+  </div>
+</div>
 <% @microposts.each do |micropost| %>
-  <div class="col-md-4">
-    <div class="post_details">
+  <div class="container_show">
+    <div class="post_details_show">
       <div class= "user_info">
         <%= gravatar_for current_user %>
         <span class="user"><%= micropost.user.name %></span>
@@ -16,35 +48,26 @@
         <p><%= micropost.content %></p>
       </div>
       <div class="row">
-        <% if micropost.vote_1? %>
-          <div class="col-md-6">
-            <div class="vote_1">
-              <p><%= micropost.vote_1 %></p>
-            </div>
-          </div>
-        <% end %>
-        <% if micropost.vote_2? %>
-          <div class="col-md-6">
-            <div class="vote_2">
-              <p><%= micropost.vote_2 %></p>
-            </div>
-          </div>
-        <% end %>
-        <% if micropost.vote_3? %>
-          <div class="col-md-6">
-            <div class="vote_3">
-              <p><%= micropost.vote_3 %></p>
-            </div>
-          </div>
-        <% end %>
-        <% if micropost.vote_4? %>
-          <div class="col-md-6">
-            <div class="vote_4">
-              <p><%= micropost.vote_4 %></p>
-            </div>
+        <% micropost.choices&.each do |choice| %>
+          <% method = current_user.voted?(choice) ? 'delete' : 'post' %>
+          <div class="col-md-12">
+            <button class="<%=current_user.voted?(choice) ? 'voted' : 'vote' %>">
+              <%= link_to choice.name, choice_vote_path(choice.id), method: method %>
+            </button>
           </div>
         <% end %>
       </div>
+    </div>
+    <div class="choice">
+      <%= pie_chart micropost.choices.joins(:votes).map { |m| [m.name, m.votes.count] }.to_h, donut: true %>
+      <% micropost&.choices&.each do |choice| %>
+        <table>
+          <tr>
+          <th><%= choice.name %></th>
+            <td><%= choice.votes.count %></td>
+          </tr>
+        </table>
+      <% end %>
     </div>
   </div>
 <% end %>

@@ -37,6 +37,7 @@ gem 'will_paginate',           '3.1.7'
 gem 'bootstrap-will_paginate', '1.0.0'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
+gem 'mini_magick'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'bootsnap', require: false
@@ -49,6 +50,8 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'rails-i18n'
+  gem "chartkick"
+  gem 'chartable'
 end
 
 group :development do
