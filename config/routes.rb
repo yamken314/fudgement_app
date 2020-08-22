@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   delete '/login', to: 'sessions#destroy'
   resources :users do
     member do
-    get :following, :followers
+      get :following, :followers
     end
   end
   resources :microposts, only: [:create, :destroy, :new]
