@@ -9,8 +9,27 @@ class UsersController < ApplicationController
 
   def show
     @microposts = current_user.microposts.all.includes(:choices).with_attached_images.sorted_desc
+    @color = [ "background: linear-gradient(#FA709A 30%, #FBAB7E 60%, #F7CE68 100%);
+                box-shadow: 0 6px #7295acf5;
+                top: 0;
+                transition: .2s box-shadow,.2s top,.4s;",
+                "background-color: #ffcfdf;
+                background-image: linear-gradient(315deg, #ffcfdf 0%, #b0f3f1 74%);
+                box-shadow: 0 6px #526fa5;
+                top: 0;
+                transition: .2s box-shadow,.2s top,.4s;",
+                "background-color: #09c7fb;
+                background-image: linear-gradient(315deg, #09c7fb 0%, #93fb9d 74%);
+                box-shadow: 0 6px #526fa5;
+                top: 0;
+                transition: .2s box-shadow,.2s top,.4s;",
+                "background-color: #f876de;
+                background-image: linear-gradient(315deg, #f876de 0%, #b9d1eb 74%);
+                box-shadow: 0 6px #526fa5;
+                top: 0;
+                transition: .2s box-shadow,.2s top,.4s;"]
   end
-
+  
   def new
     @user = User.new
   end
