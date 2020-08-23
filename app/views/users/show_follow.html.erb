@@ -1,4 +1,4 @@
-<%= render "users/follow_container" %>
+<%= render partial: 'users/follow_container', locals: { user: @user} %>
 <% @users.each do |user| %>
   <div class="follow_list">
     <p class="gravatar_for"><%= gravatar_for user %></p>

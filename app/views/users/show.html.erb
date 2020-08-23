@@ -1,4 +1,4 @@
-<%= render "users/follow_container" %>
+<%= render partial: 'users/follow_container', locals: { user: @user} %>
 <% @microposts.each do |micropost| %>
   <div class="container_show">
     <div class="post_details_show">
