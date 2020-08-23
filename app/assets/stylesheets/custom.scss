@@ -18,6 +18,20 @@
   top: 0;
   transition: .2s box-shadow,.2s top,.4s;
  }
+ @mixin green_back{
+  background-color: #09c7fb;
+  background-image: linear-gradient(315deg, #09c7fb 0%, #93fb9d 74%);
+  box-shadow: 0 6px #526fa5;
+  top: 0;
+  transition: .2s box-shadow,.2s top,.4s;
+ }
+ @mixin purple_back {
+  background-color: #f876de;
+  background-image: linear-gradient(315deg, #f876de 0%, #b9d1eb 74%);
+  box-shadow: 0 6px #526fa5;
+  top: 0;
+  transition: .2s box-shadow,.2s top,.4s;
+ }
  @mixin btn_orange {
   border-radius: 1.5em;
   color: red($color: #8f8989);
@@ -242,7 +256,22 @@ input {
   border-radius: 1.5em;
   @include blue_back;
 }
-.post_details_show{
+.post_details_3{
+  margin-top: 10px;
+  padding: 20px;
+  height: auto;
+  border-radius: 1.5em;
+  @include green_back;
+}
+.post_details_4{
+  margin-top: 10px;
+  padding: 20px;
+  height: auto;
+  border-radius: 1.5em;
+  @include purple_back;
+}
+
+.post_details_show_1{
   align-items: center;
   float: left;
   width: 45%;
@@ -250,8 +279,39 @@ input {
   padding: 20px;
   height: auto;
   border-radius: 1.5em;
-  
+  @include orange_back;
 }
+.post_details_show_2{
+  align-items: center;
+  float: left;
+  width: 45%;
+  margin: 2% 5%;
+  padding: 20px;
+  height: auto;
+  border-radius: 1.5em;
+  @include blue_back;
+}
+.post_details_show_3{
+  align-items: center;
+  float: left;
+  width: 45%;
+  margin: 2% 5%;
+  padding: 20px;
+  height: auto;
+  border-radius: 1.5em;
+  @include green_back;
+}
+.post_details_show_4{
+  align-items: center;
+  float: left;
+  width: 45%;
+  margin: 2% 5%;
+  padding: 20px;
+  height: auto;
+  border-radius: 1.5em;
+  @include purple_back;
+}
+
 .follow_container{
   width: 250px;
   float:left;
