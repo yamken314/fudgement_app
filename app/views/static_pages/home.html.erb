@@ -1,33 +1,34 @@
-<% @microposts.each do |micropost| %>
+<% @microposts.each_with_index do |micropost, i| %>
   <div class="item">
-    <div class="post_details">
-      <div class="user_info">
-        <%= gravatar_for micropost.user %>
-        <span class="user"><%= micropost.user.name %></span>
-      </div>
-        <% if micropost.images.attached? %>
-          <% micropost.images.each do |image| %>
-            <div class="picture">
-              <%= image_tag image, class: "img" %>
+      <div class="<%= @colors.shuffle[i % 4] %>">
+        <div class="user_info">
+          <%= gravatar_for micropost.user %>
+          <span class="user"><%= micropost.user.name %></span>
+        </div>
+          <% if micropost.images.attached? %>
+            <% micropost.images.each do |image| %>
+              <div class="picture">
+                <%= image_tag image, class: "img" %>
+              </div>
+            <% end %>
+          <% end %>
+        <div class="comment">
+          <p><%= micropost.content %></p>
+        </div>
+        <div class="row">
+          <% micropost.choices&.each do |choice| %>
+            <% method = current_user.voted?(choice) ? 'delete' : 'post' %>
+            <div class="col-md-12">
+              <button class="<%=current_user.voted?(choice) ? 'voted' : 'vote' %>">
+                <%= link_to choice.name, choice_vote_path(choice.id), method: method %>
+              </button>
             </div>
           <% end %>
-        <% end %>
-      <div class="comment">
-        <p><%= micropost.content %></p>
+        </div>
       </div>
-      <div class="row">
-        <% micropost.choices&.each do |choice| %>
-          <% method = current_user.voted?(choice) ? 'delete' : 'post' %>
-          <div class="col-md-12">
-            <button class="<%=current_user.voted?(choice) ? 'voted' : 'vote' %>">
-              <%= link_to choice.name, choice_vote_path(choice.id), method: method %>
-            </button>
-          </div>
-        <% end %>
-      </div>
-    </div>
   </div>
 <% end %>
+    
 <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script>

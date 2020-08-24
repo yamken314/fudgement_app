@@ -5,8 +5,58 @@
  /* mixins, variables, etc. */
  
  $gray-medium-light: #eaeaea;
-
- 
+ @mixin orange_back {
+  box-shadow: 0 6px #7295acf5;
+  background: linear-gradient(#FA709A 30%, #FBAB7E 60%, #F7CE68 100%);
+  top: 0;
+  transition: .2s box-shadow,.2s top,.4s
+ }
+ @mixin blue_back {
+  box-shadow: 0 6px #526fa5;
+  background-color: #ffcfdf;
+  background-image: linear-gradient(315deg, #ffcfdf 0%, #b0f3f1 74%);
+  top: 0;
+  transition: .2s box-shadow,.2s top,.4s;
+ }
+ @mixin green_back{
+  background-color: #09c7fb;
+  background-image: linear-gradient(315deg, #09c7fb 0%, #93fb9d 74%);
+  box-shadow: 0 6px #526fa5;
+  top: 0;
+  transition: .2s box-shadow,.2s top,.4s;
+ }
+ @mixin purple_back {
+  background-color: #f876de;
+  background-image: linear-gradient(315deg, #f876de 0%, #b9d1eb 74%);
+  box-shadow: 0 6px #526fa5;
+  top: 0;
+  transition: .2s box-shadow,.2s top,.4s;
+ }
+ @mixin btn_orange {
+  border-radius: 1.5em;
+  color: red($color: #8f8989);
+  box-shadow: 0 6px #864c8d;
+  background-color: #f3e6e8;
+background-image: linear-gradient(315deg, #f3e6e8 0%, #d5d0e5 74%);
+  top: 0;
+  transition: .2s box-shadow,.2s top,.4s;
+ }
+ @mixin btn_active_orange {
+  box-shadow: 0 5px #7b88a1;
+  top: 1px;
+ }
+ @mixin btn_deep_blue {
+  border-radius: 1.5em;
+  box-shadow: 0 6px #526fa5;
+  background-color: #af8c9d;
+background-image: linear-gradient(315deg, #af8c9d 0%, #8cacac 74%);
+  top: 0;
+  transition: .2s box-shadow,.2s top,.4s;
+ }
+ @mixin btn_active_deep_blue {
+  box-shadow: 0 5px #526fa5;
+  top: 1px;
+ }
  @mixin box_sizing {
    -moz-box-sizing:    border-box;
    -webkit-box-sizing: border-box;
@@ -25,11 +75,7 @@
 
 .side-bar{
   border-radius: 1.5em;
-  box-shadow: 0 6px #526fa5;
-  background-color: #ffcfdf;
-  background-image: linear-gradient(315deg, #ffcfdf 0%, #b0f3f1 74%);
-  top: 0;
-  transition: .2s box-shadow,.2s top,.4s;
+  @include blue_back;
   text-align: center;
   margin-top: 10px;
   ul{
@@ -196,17 +242,36 @@ input {
   display: table-row;
   align-items: center;
 }
-.post_details{
+.post_details_1{
   margin-top: 10px;
   padding: 20px;
   height: auto;
   border-radius: 1.5em;
-  box-shadow: 0 6px #7295acf5;
-  background: linear-gradient(#FA709A 30%, #FBAB7E 60%, #F7CE68 100%);
-  top: 0;
-  transition: .2s box-shadow,.2s top,.4s
+  @include orange_back;
 }
-.post_details_show{
+.post_details_2{
+  margin-top: 10px;
+  padding: 20px;
+  height: auto;
+  border-radius: 1.5em;
+  @include blue_back;
+}
+.post_details_3{
+  margin-top: 10px;
+  padding: 20px;
+  height: auto;
+  border-radius: 1.5em;
+  @include green_back;
+}
+.post_details_4{
+  margin-top: 10px;
+  padding: 20px;
+  height: auto;
+  border-radius: 1.5em;
+  @include purple_back;
+}
+
+.post_details_show_1{
   align-items: center;
   float: left;
   width: 45%;
@@ -214,11 +279,39 @@ input {
   padding: 20px;
   height: auto;
   border-radius: 1.5em;
-  box-shadow: 0 6px #7295acf5;
-  background: linear-gradient(#FA709A 30%, #FBAB7E 60%, #F7CE68 100%);
-  top: 0;
-  transition: .2s box-shadow,.2s top,.4s
+  @include orange_back;
 }
+.post_details_show_2{
+  align-items: center;
+  float: left;
+  width: 45%;
+  margin: 2% 5%;
+  padding: 20px;
+  height: auto;
+  border-radius: 1.5em;
+  @include blue_back;
+}
+.post_details_show_3{
+  align-items: center;
+  float: left;
+  width: 45%;
+  margin: 2% 5%;
+  padding: 20px;
+  height: auto;
+  border-radius: 1.5em;
+  @include green_back;
+}
+.post_details_show_4{
+  align-items: center;
+  float: left;
+  width: 45%;
+  margin: 2% 5%;
+  padding: 20px;
+  height: auto;
+  border-radius: 1.5em;
+  @include purple_back;
+}
+
 .follow_container{
   width: 250px;
   float:left;
@@ -284,32 +377,19 @@ input {
 }
 
 .vote {
-  border-radius: 1.5em;
-  color: red($color: #8f8989);
-  box-shadow: 0 6px #864c8d;
-  background-color: #7f5a83;
-  background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);
-  top: 0;
-  transition: .2s box-shadow,.2s top,.4s;
+  @include btn_orange;
   a {
     color: black;
   }
 }
 .vote:active {
-  box-shadow: 0 5px #7b88a1;
-  top: 1px;
+  @include btn_active_orange;
 }
 .voted {
-  border-radius: 1.5em;
-  box-shadow: 0 6px #526fa5;
-  background-color: #f39f86;
-  background-image: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
-  top: 0;
-  transition: .2s box-shadow,.2s top,.4s;
+  @include btn_deep_blue;
 }
 .voted:active {
-  box-shadow: 0 5px #526fa5;
-  top: 1px;
+  @include btn_active_deep_blue;
 }
 button {
   margin: 0 20px 10px;
