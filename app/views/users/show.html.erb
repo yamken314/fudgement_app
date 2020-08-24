@@ -1,41 +1,11 @@
-<div class="follow_container">
-  <div class="follow_user_info">
-    <p class="gravatar_for"><%= gravatar_for current_user %></p>
-    <h4 class="user"><%= current_user.name %></h4>
-  </div>
-  <div class="stats">
-    <div class="follow_stats">
-      <div class="follow">フォロー</div>
-      <div class="follow_count">（ 30 ）</div>
-    </div>
-    <div class="follow_stats">
-      <div class="follow">フォロワー</div>
-      <div class="follow_count">（ 30 ）</div>
-    </div>
-  </div>
-  <div class="follow_list">
-    <p class="gravatar_for"><%= gravatar_for current_user %></p>
-    <p class="user"><%= current_user.name %></p>
-  </div>
-  <div class="follow_list">
-    <p class="gravatar_for"><%= gravatar_for current_user %></p>
-    <p class="user"><%= current_user.name %></p>
-  </div>
-  <div class="follow_list">
-    <p class="gravatar_for"><%= gravatar_for current_user %></p>
-    <p class="user"><%= current_user.name %></p>
-  </div>
-  <div class="follow_list">
-    <p class="gravatar_for"><%= gravatar_for current_user %></p>
-    <p class="user"><%= current_user.name %></p>
-  </div>
-</div>
-<% @microposts.each do |micropost| %>
+<%= render partial: 'users/follow_container', locals: { user: @user} %>
+<% @microposts.each_with_index do |micropost, i| %>
   <div class="container_show">
-    <div class="post_details_show">
+    <div class="<%= @colors.shuffle[i % 4] %>">
       <div class= "user_info">
-        <%= gravatar_for current_user %>
+        <%= gravatar_for micropost.user %>
         <span class="user"><%= micropost.user.name %></span>
+        <%= render partial: 'users/follow_unfollow', locals: { user: @user } %>
       </div>
         <% if micropost.images.attached? %>
           <% micropost.images.each do |image| %>
