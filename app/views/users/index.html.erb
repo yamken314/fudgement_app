@@ -1,16 +1,8 @@
 <h1>All users</h1>
-
-
+<% @users.each do |user| %>
+  <div class="follow_list">
+    <p class="gravatar_for"><%= gravatar_for user %></p>
+    <h4 class="user"><%= link_to user.name, user %></h4>
+  </div>
+<% end %>
 <%= will_paginate %>
-<ul class="users col-md-4 masonry">
-  <% @users.each do |user| %>
-    <li>
-      <%= gravatar_for user, size: 50 %>
-      <%= link_to user.name, user %>
-      <%if current_user.admin? && !current_user?(user)%>
-        |<%= link_to "delete", user, method: :delete,
-                        data:{confirm: "削除してもいいいですか?"}%>
-      <%end%>
-    </li>
-  <% end %>
-</ul>

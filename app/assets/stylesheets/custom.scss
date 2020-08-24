@@ -124,7 +124,7 @@ input:checked ~ .menu-1 {
   transform: translatey(0px);
 }
 
-h3{
+h3, h1{
   text-align: center;
 }
 /* forms */
@@ -334,11 +334,16 @@ input {
 .follow_list{
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
   padding-top: 10%;
   border-bottom: solid 1px rgb(133, 133, 133);
   margin-left: 30%;
   width: 60%;
+  .gravatar_for{
+    padding-left: 25%;
+  }
+  .user {
+    padding-left: 25%;
+  }
 }
 .gravatar{
   border-radius: 50%;
