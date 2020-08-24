@@ -48,9 +48,11 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
-  def following; end
+  def following
+  end
 
-  def followers; end
+  def followers
+  end
 
   private
 
