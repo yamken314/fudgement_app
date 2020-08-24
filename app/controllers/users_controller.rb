@@ -2,13 +2,15 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :currect_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
+  before_action :set_users, only: [:following, :followers]
 
   def index
     @users = User.paginate(page: params[:page])
   end
 
   def show
-    @microposts = current_user.microposts.all.includes(:choices).with_attached_images.sorted_desc
+    @user = User.find(params[:id])
+    @microposts = @user.microposts.all.includes(:choices).with_attached_images.sorted_desc
     @colors = ['post_details_show_1', 'post_details_show_2', 'post_details_show_3', 'post_details_show_4']
   end
   
@@ -47,7 +49,20 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def following
+  end
+
+  def followers
+  end
+
   private
+
+  def set_users
+    @user = User.find(params[:id])
+    users = action_name == 'following' ? @user.following : @user.followers
+    @users = users.paginate(page: params[:page])
+    render 'show_follow'
+  end
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)

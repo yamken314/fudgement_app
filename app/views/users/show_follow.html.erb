@@ -1,0 +1,9 @@
+<%= render partial: 'users/follow_container', locals: { user: @user} %>
+<% @users.each do |user| %>
+  <div class="follow_list">
+    <p class="gravatar_for"><%= gravatar_for user %></p>
+    <h4 class="user"><%= user.name %></h4>
+    <%= render partial: 'users/follow_unfollow', locals: { user: user } %>
+  </div>
+<% end %>
+<%= will_paginate %>
