@@ -1,7 +1,9 @@
 <% if current_user != user %>
-  <% if current_user.following?(user) %>
-    <%= link_to "フォロー解除", relationship_path(followers_id: user.id), class: "btn btn-primary", method: :delete %>
-  <% else %>
-    <%= link_to "フォローする", relationships_path(followed_id: user.id), class: "btn btn-primary", method: :post %>
-  <% end %>
+  <div id="follow_form">
+    <% if current_user.following?(user) %>
+      <%= render partial: 'unfollow', locals: { user: user } %>
+    <% else %>
+      <%= render partial: 'follow', locals: { user: user } %>
+    <% end %>
+  </div>
 <% end %>
