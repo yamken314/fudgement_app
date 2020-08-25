@@ -1,7 +1,7 @@
 <%= render 'shared/stats' %>
 <h1><%= @title %></h1>
 <% @users.each do |user| %>
-  <div id="follow_list">
+  <div class="follow_list">
     <p class="gravatar_follow"><%= gravatar_for user %></p>
     <h4 class="user"><%= link_to user.name, user %></h4>
   </div>
