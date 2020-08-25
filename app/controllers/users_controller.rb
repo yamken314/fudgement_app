@@ -60,6 +60,7 @@ class UsersController < ApplicationController
   def set_users
     @user = User.find(params[:id])
     users = action_name == 'following' ? @user.following : @user.followers
+    @title = action_name == 'following' ? "フォロー中" : "フォロワー"
     @users = users.paginate(page: params[:page])
     render 'show_follow'
   end

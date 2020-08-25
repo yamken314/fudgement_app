@@ -1,7 +1,7 @@
 <h1>All users</h1>
 <% @users.each do |user| %>
   <div class="follow_list">
-    <p class="gravatar_for"><%= gravatar_for user %></p>
+    <p class="gravatar_follow"><%= gravatar_for user %></p>
     <h4 class="user"><%= link_to user.name, user %></h4>
   </div>
 <% end %>
