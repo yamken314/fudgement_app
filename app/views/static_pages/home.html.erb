@@ -17,11 +17,8 @@
         </div>
         <div class="row">
           <% micropost.choices&.each do |choice| %>
-            <% method = current_user.voted?(choice) ? 'delete' : 'post' %>
-            <div class="col-md-12">
-              <button class="<%=current_user.voted?(choice) ? 'voted' : 'vote' %>">
-                <%= link_to choice.name, choice_vote_path(choice.id), method: method %>
-              </button>
+            <div id="choice_<%= choice.id %>">
+              <%= render 'choice', choice: choice %>
             </div>
           <% end %>
         </div>
