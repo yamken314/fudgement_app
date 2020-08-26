@@ -11,6 +11,7 @@ class VotesController < ApplicationController
 
   def destroy
     vote = Vote.find_by(choice_id: params[:choice_id], user_id: current_user.id)
+    @choice = Choice.find(params[:choice_id])
     vote.destroy
     respond_to do |format|
       format.html { redirect_to root_path }
