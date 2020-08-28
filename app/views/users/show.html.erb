@@ -18,25 +18,14 @@
       </div>
       <div class="row">
         <% micropost.choices&.each do |choice| %>
-          <% method = current_user.voted?(choice) ? 'delete' : 'post' %>
-          <div class="col-md-12">
-            <button class="<%=current_user.voted?(choice) ? 'voted' : 'vote' %>">
-              <%= link_to choice.name, choice_vote_path(choice.id), method: method %>
-            </button>
+          <div id="choice_<%= choice.id %>">
+            <%= render 'static_pages/choice', choice: choice %>
           </div>
         <% end %>
       </div>
     </div>
-    <div class="choice">
-      <%= pie_chart micropost.choices.joins(:votes).map { |m| [m.name, m.votes.count] }.to_h, donut: true %>
-      <% micropost&.choices&.each do |choice| %>
-        <table>
-          <tr>
-          <th><%= choice.name %></th>
-            <td><%= choice.votes.count %></td>
-          </tr>
-        </table>
-      <% end %>
+    <div class="choice" id="pie_chart_<%= micropost.id %>">
+      <%= render 'pie_chart', micropost: micropost %>
     </div>
   </div>
 <% end %>

@@ -1,2 +1,2 @@
 $("#choice_<%= @choice.id %>").html("<%= j(render 'static_pages/choice', choice: @choice ) %>");
-$("#choice").html("<%= j(render 'users/pie_chart', micropost: @vote) %>");
+$("#pie_chart_<%= @vote.id %>").html("<%= j(render 'users/pie_chart', micropost: @vote) %>");

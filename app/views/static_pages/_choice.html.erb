@@ -3,7 +3,7 @@
     <%= link_to choice.name, choice_vote_path(choice.id), method: :delete, remote: true %>
   </button>
 <% else %>
-  <button class="vote" id="vote_<%= choice.id %>">
+  <button class="vote">
     <%= link_to choice.name, choice_vote_path(choice.id), method: :post, remote: true %>
   </button>
 <% end %>
