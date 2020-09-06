@@ -19,12 +19,20 @@
       <div class="row">
         <% micropost.choices&.each do |choice| %>
           <div id="choice_<%= choice.id %>">
-            <%= render 'static_pages/choice', choice: choice %>
+            <% if current_user.voted?(choice) %>
+              <button class="voted">
+                <%= link_to choice.name, choice_vote_path(choice.id), method: :delete %>
+              </button>
+            <% else %>
+              <button class="vote">
+                <%= link_to choice.name, choice_vote_path(choice.id), method: :post %>
+              </button>
+            <% end %>
           </div>
         <% end %>
       </div>
     </div>
-    <div class="choice" id="pie_chart_<%= micropost.id %>">
+    <div class="choice" id="chart-<%= micropost.id %>">
       <%= render 'pie_chart', micropost: micropost %>
     </div>
   </div>
