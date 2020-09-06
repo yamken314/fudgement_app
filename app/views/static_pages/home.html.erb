@@ -3,7 +3,7 @@
       <div class="<%= @colors.shuffle[i % 4] %>">
         <div class="user_info">
           <%= gravatar_for micropost.user %>
-          <span class="user"><%= micropost.user.name %></span>
+          <span class="user"><%= link_to micropost.user.name, micropost_path(micropost) %></span>
         </div>
           <% if micropost.images.attached? %>
             <% micropost.images.each do |image| %>
