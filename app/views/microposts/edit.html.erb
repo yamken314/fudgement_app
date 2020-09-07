@@ -1,0 +1,34 @@
+<%= render 'shared/stats', user: @micropost.user %>
+<%= form_with model: @micropost, local: true do |form|%>
+  <%= render 'shared/error_messeges', object: form.object%>
+  <div class="container_show">
+    <div class="<%= @colors.sample %>">
+      <div class= "user_info">
+        <%= gravatar_for @micropost.user %>
+        <span class="user"><%= @micropost.user.name %></span>
+      </div>
+        <% if @micropost.images.attached? %>
+          <% @micropost.images.each do |image| %>
+            <div class="picture">
+              <%= image_tag image, class: "img" %>
+            </div>
+          <% end %>
+        <% end %>
+        <%= form.file_field :images, multiple: true %>
+        <%= form.text_area :content, placeholder: "コメントを記入して下さい",class: "content" %>
+      <div class="row">
+        <%= form.fields_for :choices do |choice_fields| %>
+          <div class="col-md-12">
+            <%= choice_fields.text_area :name, class: "number" %>
+          </div>
+        <% end %>
+        <div class="judgement-btn">
+          <%= form.submit "update?", class: "btn-border" %>
+        </div>
+      </div>
+    </div>
+    <div class="choice" id="chart-<%= @micropost.id %>">
+      <%= render 'users/pie_chart', micropost: @micropost %>
+    </div>
+  </div>
+<% end %>

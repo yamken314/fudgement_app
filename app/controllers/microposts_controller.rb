@@ -26,6 +26,7 @@ class MicropostsController < ApplicationController
 
   def edit
     @micropost = Micropost.find(params[:id])
+    @colors = ['post_details_show_1', 'post_details_show_2', 'post_details_show_3', 'post_details_show_4']
   end
 
   private
