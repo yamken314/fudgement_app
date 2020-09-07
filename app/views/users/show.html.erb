@@ -1,4 +1,4 @@
-<%= render 'shared/stats' %>
+<%= render 'shared/stats', user: @user %>
 <% @microposts.each_with_index do |micropost, i| %>
   <div class="container_show">
     <div class="<%= @colors.shuffle[i % 4] %>">
