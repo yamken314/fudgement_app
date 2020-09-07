@@ -18,15 +18,7 @@
     <div class="row">
       <% @micropost.choices&.each do |choice| %>
         <div id="choice_<%= choice.id %>">
-          <% if current_user.voted?(choice) %>
-            <button class="voted">
-              <%= link_to choice.name, choice_vote_path(choice.id), method: :delete %>
-            </button>
-          <% else %>
-            <button class="vote">
-              <%= link_to choice.name, choice_vote_path(choice.id), method: :post %>
-            </button>
-          <% end %>
+          <%= render 'static_pages/choice', choice: choice %>
         </div>
       <% end %>
     </div>
