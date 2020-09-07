@@ -4,6 +4,9 @@
     <div class= "user_info">
       <%= gravatar_for @micropost.user %>
       <span class="user"><%= @micropost.user.name %></span>
+      <% if current_user?(@micropost.user) %>
+        <span class="edit"><%= link_to '編集', edit_micropost_path %></span>
+      <% end %>
     </div>
       <% if @micropost.images.attached? %>
         <% @micropost.images.each do |image| %>
