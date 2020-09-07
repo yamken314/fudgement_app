@@ -1,20 +1,20 @@
-<% @user ||= current_user %>
+<% user ||= current_user %>
 <div class="follow_container">
-  <p class="gravatar_for"><%= gravatar_for @user %></p>
-  <h4 class="user"><%= @user.name %></h4>
+  <p class="gravatar_for"><%= gravatar_for user %></p>
+  <h4 class="user"><%= user.name %></h4>
   <div class="count">
-    <a href="<%= following_user_path(@user) %>">
+    <a href="<%= following_user_path(user) %>">
       <strong id="following" class="stat">
-        <%= @user.following.count %>
+        <%= user.following.count %>
       </strong>
       フォロー中
     </a>
-    <a href="<%= followers_user_path(@user) %>">
+    <a href="<%= followers_user_path(user) %>">
       <strong id="followers" class="stat">
-        <%= @user.followers.count %>
+        <%= user.followers.count %>
       </strong>
       フォロワー
     </a>
   </div>
-  <%= render partial: 'users/follow_unfollow', locals: { user: @user } %>
+  <%= render partial: 'users/follow_unfollow', locals: { user: user } %>
 </div>
