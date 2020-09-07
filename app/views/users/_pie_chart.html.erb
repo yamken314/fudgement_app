@@ -1,4 +1,4 @@
-<%= pie_chart micropost.choices.joins(:votes).map { |m| [m.name, m.votes.count] }.to_h, donut: true %>
+<%= pie_chart micropost.choices.joins(:votes).map { |m| [m.name, m.votes.count] }.to_h, donut: true, messages: {empty: "投票はありません"} %>
 <% micropost.choices&.each do |choice| %>
   <table>
     <tr>
