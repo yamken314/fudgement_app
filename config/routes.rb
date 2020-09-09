@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
-  resources :microposts, only: [:create, :destroy, :new, :show, :edit]
+  resources :microposts
   resources :choices, only: [:post] do
     resource :vote, only: [:create, :destroy]
   end

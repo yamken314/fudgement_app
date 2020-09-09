@@ -29,9 +29,19 @@ class MicropostsController < ApplicationController
     @colors = ['post_details_show_1', 'post_details_show_2', 'post_details_show_3', 'post_details_show_4']
   end
 
+  def update
+    @micropost = Micropost.find(params[:id])
+    if @micropost.update(micropost_params)
+      flash[:success] = "更新しました"
+      redirect_to micropost_path
+    else
+      render 'edit'
+    end
+  end
+
   private
 
     def micropost_params
-      params.require(:micropost).permit(:content, images: [], choices_attributes: [:name])
+      params.require(:micropost).permit(:content, images: [], choices_attributes: [:id,:name])
     end
 end
