@@ -37,6 +37,11 @@ class MicropostsController < ApplicationController
     else
       render 'edit'
     end
+    if image = params[:micropost][:image_ids]
+      image.each do |image_id|
+        @micropost.images.find(image_id).purge
+      end
+    end
   end
 
   private

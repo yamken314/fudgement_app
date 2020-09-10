@@ -11,6 +11,7 @@
           <% @micropost.images.each do |image| %>
             <div class="picture">
               <%= image_tag image, class: "img" %>
+              <p class="img_check">削除する画像はチェックしてください<%= form.check_box :image_ids, {:multiple => true, class: "hoge"}, image.id, false %></p>
             </div>
           <% end %>
         <% end %>
