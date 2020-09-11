@@ -20,12 +20,12 @@ class MicropostsController < ApplicationController
   end
 
   def show
-    @micropost = Micropost.find(params[:id])
+    @micropost = Micropost.with_attached_images.find(params[:id])
     @colors = ['post_details_show_1', 'post_details_show_2', 'post_details_show_3', 'post_details_show_4']
   end
 
   def edit
-    @micropost = Micropost.find(params[:id])
+    @micropost = Micropost.with_attached_images.find(params[:id])
     @colors = ['post_details_show_1', 'post_details_show_2', 'post_details_show_3', 'post_details_show_4']
   end
 
