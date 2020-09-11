@@ -1,6 +1,8 @@
 class MicropostsController < ApplicationController
   before_action :logged_in_user, only:[:create,:destroy]
-  
+  before_action :set_micropost, only:[:show, :edit, :update]
+  before_action :set_colors, only:[:show, :edit]
+
   def create
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
@@ -11,26 +13,18 @@ class MicropostsController < ApplicationController
     end
   end
 
-  def destroy
-  end
-
   def new
     @micropost = current_user.microposts.build if logged_in?
     4.times { @micropost.choices.build }
   end
 
   def show
-    @micropost = Micropost.find(params[:id])
-    @colors = ['post_details_show_1', 'post_details_show_2', 'post_details_show_3', 'post_details_show_4']
   end
 
   def edit
-    @micropost = Micropost.find(params[:id])
-    @colors = ['post_details_show_1', 'post_details_show_2', 'post_details_show_3', 'post_details_show_4']
   end
 
   def update
-    @micropost = Micropost.find(params[:id])
     if @micropost.update(micropost_params)
       flash[:success] = "更新しました"
       redirect_to micropost_path
@@ -48,5 +42,13 @@ class MicropostsController < ApplicationController
 
     def micropost_params
       params.require(:micropost).permit(:content, images: [], choices_attributes: [:id,:name])
+    end
+
+    def set_micropost
+      @micropost = Micropost.with_attached_images.find(params[:id])
+    end
+
+    def set_colors
+      @colors = ['post_details_show_1', 'post_details_show_2', 'post_details_show_3', 'post_details_show_4']
     end
 end
