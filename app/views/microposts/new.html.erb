@@ -1,4 +1,4 @@
-<div class="back-1 col-md-4 col-md-offset-2">
+<div class="sign_up col-md-4 col-md-offset-2">
   <%= form_with model: @micropost, local: true do |f|%>
     <%= render 'shared/error_messeges', object: f.object%>
     <div class="field col-md-12">
@@ -8,14 +8,17 @@
       <%= f.text_area :content, placeholder: "コメントを記入して下さい",class: "content" %>
     </div>
     <div id="detail-association-insertion-point">
+      <div class="judgement-btn">
+        <%= link_to_add_association 'ボタンを追加', f, :choices,
+        class: "btn-border",
+        data: {
+        association_insertion_node: '#detail-association-insertion-point',
+        association_insertion_method: 'append' }
+         %>
+      </div>
       <%= f.fields_for :choices do |c| %>
         <%= render 'choice_fields', f: c %>
       <% end %>
-      <%= link_to_add_association '明細を追加', f, :choices,
-      data: {
-      association_insertion_node: '#detail-association-insertion-point',
-      association_insertion_method: 'append' }, render_options: {locals: { choice_fields: f}}
-       %>
     </div>
     <div class="judgement-btn">
       <%= f.submit "Judgement?", class: "btn-border" %>
