@@ -8,11 +8,14 @@
       <%= f.text_area :content, placeholder: "コメントを記入して下さい",class: "content" %>
     </div>
     <div id="detail-association-insertion-point">
-      <%= link_to_add_association 'ボタンを追加', f, :choices,
-      data: {
-      association_insertion_node: '#detail-association-insertion-point',
-      association_insertion_method: 'append' }
-       %>
+      <div class="judgement-btn">
+        <%= link_to_add_association 'ボタンを追加', f, :choices,
+        class: "btn-border",
+        data: {
+        association_insertion_node: '#detail-association-insertion-point',
+        association_insertion_method: 'append' }
+         %>
+      </div>
       <%= f.fields_for :choices do |c| %>
         <%= render 'choice_fields', f: c %>
       <% end %>
