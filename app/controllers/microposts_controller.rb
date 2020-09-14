@@ -15,7 +15,7 @@ class MicropostsController < ApplicationController
 
   def new
     @micropost = current_user.microposts.build if logged_in?
-    4.times { @micropost.choices.build }
+    @micropost.choices.build
   end
 
   def show
@@ -41,7 +41,7 @@ class MicropostsController < ApplicationController
   private
 
     def micropost_params
-      params.require(:micropost).permit(:content, images: [], choices_attributes: [:id,:name])
+      params.require(:micropost).permit(:content, images: [], choices_attributes: [:id,:name, :_destroy])
     end
 
     def set_micropost
