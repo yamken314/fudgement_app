@@ -5,7 +5,7 @@
       <%= gravatar_for @micropost.user %>
       <span class="user"><%= @micropost.user.name %></span>
       <% if current_user?(@micropost.user) %>
-        <span class="edit"><%= link_to '編集', edit_micropost_path %></span>
+        <span class="edit"><%= link_to '編集', edit_micropost_path, class: "btn-border-sm"%></span>
       <% end %>
     </div>
       <% if @micropost.images.attached? %>
@@ -24,7 +24,7 @@
           <%= render 'static_pages/choice', choice: choice %>
         </div>
         <% if current_user?(@micropost.user) %>
-          <%= link_to "削除", choice_path(choice.id), method: :delete, data: { confirm: "『#{choice.name}』を削除しますか？", cancel: 'やめる', title: '削除確認' } %>
+          <%= link_to "削除", choice_path(choice.id), method: :delete, class: "btn-border-sm", data: { confirm: "『#{choice.name}』を削除しますか？", cancel: 'やめる', title: '削除確認' } %>
         <% end %>
       </div>
     <% end %>
