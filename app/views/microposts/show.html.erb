@@ -23,7 +23,9 @@
         <div id="choice_<%= choice.id %>">
           <%= render 'static_pages/choice', choice: choice %>
         </div>
-        <%= link_to "削除", choice_path(choice.id), method: :delete, data: { confirm: "『#{choice.name}』を削除しますか？", cancel: 'やめる', title: '削除確認' } %>
+        <% if current_user?(@micropost.user) %>
+          <%= link_to "削除", choice_path(choice.id), method: :delete, data: { confirm: "『#{choice.name}』を削除しますか？", cancel: 'やめる', title: '削除確認' } %>
+        <% end %>
       </div>
     <% end %>
   </div>
