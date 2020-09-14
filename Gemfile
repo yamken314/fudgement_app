@@ -52,6 +52,7 @@ group :development, :test do
   gem 'rails-i18n'
   gem "chartkick"
   gem 'chartable'
+  gem 'cocoon'
 end
 
 group :development do
