@@ -18,13 +18,16 @@
     <div class="comment">
       <p><%= @micropost.content %></p>
     </div>
-    <div class="row">
-      <% @micropost.choices&.each do |choice| %>
+    <% @micropost.choices&.each do |choice| %>
+      <div class="choice_show_row">
         <div id="choice_<%= choice.id %>">
           <%= render 'static_pages/choice', choice: choice %>
         </div>
-      <% end %>
-    </div>
+        <% if current_user?(@micropost.user) %>
+          <%= link_to "削除", choice_path(choice.id), method: :delete, data: { confirm: "『#{choice.name}』を削除しますか？", cancel: 'やめる', title: '削除確認' } %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
   <div class="choice" id="chart-<%= @micropost.id %>">
     <%= render 'users/pie_chart', micropost: @micropost %>
