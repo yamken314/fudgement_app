@@ -1,0 +1,29 @@
+<div class="modal-dialog">
+  <div class="sign_up col-md-8 col-md-offset-2">
+    <%= form_with model: @micropost, local: true do |f|%>
+      <%= render 'shared/error_messeges', object: f.object%>
+      <div class="field col-md-12">
+        <span class="picture">
+          <%= f.file_field :images, multiple: true %>
+        </span>
+        <%= f.text_area :content, placeholder: "コメントを記入して下さい",class: "content" %>
+      </div>
+      <div id="detail-association-insertion-point">
+        <div class="judgement-btn">
+          <%= link_to_add_association 'ボタンを追加', f, :choices,
+          class: "btn-border-sm",
+          data: {
+          association_insertion_node: '#detail-association-insertion-point',
+          association_insertion_method: 'append' }
+           %>
+        </div>
+        <%= f.fields_for :choices do |c| %>
+          <%= render 'choice_fields', f: c %>
+        <% end %>
+      </div>
+      <div class="judgement-btn">
+        <%= f.submit "Judgement?", class: "btn-border" %>
+      </div>
+    <% end %>
+  </div>
+</div>
