@@ -1,4 +1,6 @@
 class VotesController < ApplicationController
+  before_action :logged_in_user, only:[:create, :destroy]
+  
   def create
     vote = current_user.votes.build(choice_id: params[:choice_id])
     @choice = Choice.find(params[:choice_id])
