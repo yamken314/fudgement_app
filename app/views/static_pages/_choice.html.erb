@@ -1,4 +1,4 @@
-<% if current_user.voted?(choice) %>
+<% if logged_in? && current_user.voted?(choice) %>
   <button class="voted">
     <%= link_to choice.name, choice_vote_path(choice.id), method: :delete, remote: true %>
   </button>

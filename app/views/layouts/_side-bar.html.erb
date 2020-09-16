@@ -12,9 +12,11 @@
       <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
       <% else %>
     <ul>
-      <li><%= link_to "Home",root_path %></li>
-      <li><%= link_to "Sign up",signup_path %></li>
-      <li><%= link_to "Login",login_path %></li>
+      <li><%= link_to "Home",root_path, data: { "turbolinks" => false } %></li>
+      <li><%= link_to "Sign up",signup_path, remote: true %></li>
+      <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+      <li><%= link_to "Login",login_path, remote: true %></li>
+      <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
       <% end %>
     </ul>
   </div>

@@ -1,0 +1,17 @@
+<div class="modal-dialog">
+  <div class="sign_up col-md-8 col-md-offset-2">
+  <h3>新規作成</h3>
+    <%= form_for(@user,url: signup_path) do |f| %>
+      <%= render 'shared/error_messeges', object: f.object%>
+      <%= f.label :name,"ユーザー名"%>
+      <%= f.text_field :name, class:'form-control'%>
+      <%= f.label :email %>
+      <%= f.email_field :email, class:'form-control'%>
+      <%= f.label :password,"パスワード"%>
+      <%= f.password_field :password, class: 'form-control' %>
+      <%= f.label :password_confirmation,"パスワード確認" %>
+      <%= f.password_field :password_confirmation,class: 'form-control'%>
+      <%= f.submit "新規作成", class: "btn btn-dark w-100" %>
+    <% end %>
+   </div>
+</div>
