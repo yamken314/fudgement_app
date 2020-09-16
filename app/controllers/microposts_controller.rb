@@ -5,11 +5,13 @@ class MicropostsController < ApplicationController
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
-    if @micropost.save
-      flash[:success] = "コメントを作成しました"
-      redirect_to root_url
-    else
-      render 'microposts/new'
+    respond_to do |format|
+      if @micropost.save
+        format.html { redirect_to root_url }
+        flash[:success] = "コメントを作成しました"
+      else
+        format.html { render :_new_post }
+      end
     end
   end
 
