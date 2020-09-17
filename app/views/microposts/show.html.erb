@@ -23,9 +23,21 @@
         <div id="choice_<%= choice.id %>">
           <%= render 'static_pages/choice', choice: choice %>
         </div>
-        <% if current_user?(@micropost.user) %>
-          <%= link_to "削除", choice_path(choice.id), method: :delete, class: "btn-border-sm", data: { confirm: "『#{choice.name}』を削除しますか？", cancel: 'やめる', title: '削除確認' } %>
-        <% end %>
+      </div>
+    <% end %>
+    <%= form_with model: @micropost, local: true do |f|%>
+      <div id="detail-association-insertion-point">
+        <div class="judgement-btn">
+          <%= link_to_add_association 'ボタンを追加', f, :choices,
+          class: "btn-border-sm",
+          data: {
+          association_insertion_node: '#detail-association-insertion-point',
+          association_insertion_method: 'append' }
+           %>
+        </div>
+      </div>
+      <div class="judgement-btn">
+        <%= f.submit "update?", class: "btn-border" %>
       </div>
     <% end %>
   </div>
