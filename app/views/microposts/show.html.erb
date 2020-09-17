@@ -1,11 +1,11 @@
 <%= render 'shared/stats', user: @micropost.user %>
 <div class="container_show">
   <div class="<%= @colors.sample %>">
+    <span class="edit"><%= link_to '編集', edit_micropost_path, class: "btn-border-sm"%></span>
     <div class= "user_info">
       <%= gravatar_for @micropost.user %>
       <span class="user"><%= @micropost.user.name %></span>
       <% if current_user?(@micropost.user) %>
-        <span class="edit"><%= link_to '編集', edit_micropost_path, class: "btn-border-sm"%></span>
       <% end %>
     </div>
       <% if @micropost.images.attached? %>
