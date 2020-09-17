@@ -360,9 +360,11 @@ input {
 }
 .user_info {
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
     .user{
       font-size: 1.8rem;
-      margin-left: 10px;
+      margin-left: 2px;
     }
 }
 .picture{
