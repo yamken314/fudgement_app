@@ -1,12 +1,12 @@
 <%= render 'shared/stats', user: @micropost.user %>
 <div class="container_show">
   <div class="<%= @colors.sample %>">
-    <span class="edit"><%= link_to '編集', edit_micropost_path, class: "btn-border-sm"%></span>
+    <% if current_user?(@micropost.user) %>
+      <span class="edit"><%= link_to '編集', edit_micropost_path, class: "btn-border-sm"%></span>
+    <% end %>
     <div class= "user_info">
       <%= gravatar_for @micropost.user %>
       <span class="user"><%= @micropost.user.name %></span>
-      <% if current_user?(@micropost.user) %>
-      <% end %>
     </div>
       <% if @micropost.images.attached? %>
         <% @micropost.images.each do |image| %>
@@ -23,9 +23,18 @@
         <div id="choice_<%= choice.id %>">
           <%= render 'static_pages/choice', choice: choice %>
         </div>
-        <% if current_user?(@micropost.user) %>
-          <%= link_to "削除", choice_path(choice.id), method: :delete, class: "btn-border-sm", data: { confirm: "『#{choice.name}』を削除しますか？", cancel: 'やめる', title: '削除確認' } %>
-        <% end %>
+      </div>
+    <% end %>
+    <%= form_with model: @micropost, local: true do |f|%>
+      <div id="detail-association-insertion-point">
+        <div class="judgement-btn">
+          <%= link_to_add_association 'ボタンを追加', f, :choices,
+          class: "btn-border-sm",
+          data: {
+          association_insertion_node: '#detail-association-insertion-point',
+          association_insertion_method: 'append' }
+           %>
+        </div>
       </div>
     <% end %>
   </div>
