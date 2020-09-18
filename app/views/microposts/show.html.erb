@@ -4,20 +4,20 @@
     <% if current_user?(@micropost.user) %>
       <span class="edit"><%= link_to '編集', edit_micropost_path, class: "btn-border-sm"%></span>
     <% end %>
-  <div class= "user_info">
-    <%= gravatar_for @micropost.user %>
-    <span class="user"><%= @micropost.user.name %></span>
-  </div>
-  <% if @micropost.images.attached? %>
-    <% @micropost.images.each do |image| %>
-      <div class="picture">
-        <%= image_tag image, class: "img" %>
-      </div>
-    <% end %>
-  <% end %>
-  <div class="comment">
-    <p><%= @micropost.content %></p>
-  </div>
+    <div class= "user_info">
+      <%= gravatar_for @micropost.user %>
+      <span class="user"><%= @micropost.user.name %></span>
+    </div>
+      <% if @micropost.images.attached? %>
+        <% @micropost.images.each do |image| %>
+          <div class="picture">
+            <%= image_tag image, class: "img" %>
+          </div>
+        <% end %>
+      <% end %>
+    <div class="comment">
+      <p><%= @micropost.content %></p>
+    </div>
     <% @micropost.choices&.each do |choice| %>
       <div class="choice_show_row">
         <div id="choice_<%= choice.id %>">
@@ -35,9 +35,6 @@
           association_insertion_method: 'append' }
            %>
         </div>
-      </div>
-      <div class="judgement-btn">
-        <%= f.submit "update?", class: "btn-border" %>
       </div>
     <% end %>
   </div>
