@@ -43,7 +43,7 @@ class MicropostsController < ApplicationController
   private
 
     def micropost_params
-      params.require(:micropost).permit(:content, images: [], choices_attributes: [:id,:name, :_destroy])
+      params.require(:micropost).permit(:content, images: [], choices_attributes: [:id,:name, :user_id, :_destroy])
     end
 
     def set_micropost
