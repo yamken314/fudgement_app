@@ -30,9 +30,6 @@
           <%= render 'choice_fields', f: c %>
         <% end %>
       </div>
-      <div class="judgement-btn">
-        <%= f.submit "update?", class: "btn-border" %>
-      </div>
     </div>
     <div class="choice" id="chart-<%= @micropost.id %>">
       <%= render 'users/pie_chart', micropost: @micropost %>

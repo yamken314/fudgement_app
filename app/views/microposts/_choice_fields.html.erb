@@ -2,5 +2,6 @@
   <%= f.text_area :name, class: "number" %>
   <div class="judgement-btn">
     <%= link_to_remove_association "削除", f, data: { confirm: "『#{f.object.name}』を削除しますか？", cancel: 'やめる', title: '削除確認' }, class: "btn-border-sm"%>
+    <%= f.submit "update?", class: "btn-border" %>
   </div>
 </div>
