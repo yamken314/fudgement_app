@@ -22,6 +22,7 @@
       <div class="choice_show_row">
         <div id="choice_<%= choice.id %>">
           <%= render 'static_pages/choice', choice: choice %>
+          <span class="edit"><%= link_to '編集', edit_choice_path(choice.id), class: "btn-border-sm"%></span>
         </div>
       </div>
     <% end %>
