@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     end
   end
   resources :microposts
-  resources :choices, only: [:post, :destroy] do
+  resources :choices, only: [:post, :destroy, :edit, :update] do
     resource :vote, only: [:create, :destroy]
   end
   resources :relationships, only: [:create, :destroy]

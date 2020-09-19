@@ -22,6 +22,9 @@
       <div class="choice_show_row">
         <div id="choice_<%= choice.id %>">
           <%= render 'static_pages/choice', choice: choice %>
+          <% if choice.micropost.user.id != current_user.id && choice.user.id == current_user.id %>
+            <span class="edit"><%= link_to '編集', edit_choice_path(choice.id), class: "btn-border-sm"%></span>
+          <% end %>
         </div>
       </div>
     <% end %>
