@@ -18,7 +18,7 @@
     <div class="comment">
       <p><%= @micropost.content %></p>
     </div>
-    <% @choice.includes(:user).each do |choice| %>
+    <% @choice.each do |choice| %>
       <div class="choice_show_row">
         <div id="choice_<%= choice.id %>">
           <%= render 'static_pages/choice', choice: choice %>

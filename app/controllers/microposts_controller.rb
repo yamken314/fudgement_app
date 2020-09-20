@@ -48,7 +48,7 @@ class MicropostsController < ApplicationController
 
     def set_micropost
       @micropost = Micropost.with_attached_images.find(params[:id])
-      @choice = @micropost.choices.joins(:user)
+      @choice = @micropost.choices.eager_load(:user)
     end
 
     def set_colors
