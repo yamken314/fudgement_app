@@ -18,11 +18,11 @@
     <div class="comment">
       <p><%= @micropost.content %></p>
     </div>
-    <% @micropost.choices&.each do |choice| %>
+    <% @choice.includes(:user).each do |choice| %>
       <div class="choice_show_row">
         <div id="choice_<%= choice.id %>">
           <%= render 'static_pages/choice', choice: choice %>
-          <% if choice.micropost.user.id != current_user.id && choice.user.id == current_user.id %>
+          <% if choice.micropost.user != current_user && choice.user == current_user %>
             <span class="edit"><%= link_to '編集', edit_choice_path(choice.id), class: "btn-border-sm"%></span>
           <% end %>
         </div>
