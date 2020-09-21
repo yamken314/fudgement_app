@@ -18,16 +18,6 @@
     <div class="comment">
       <p><%= @micropost.content %></p>
     </div>
-    <% @choice.each do |choice| %>
-      <div class="choice_show_row">
-        <div id="choice_<%= choice.id %>">
-          <%= render 'static_pages/choice', choice: choice %>
-          <% if choice.micropost.user != current_user && choice.user == current_user %>
-            <span class="edit"><%= link_to '編集', edit_choice_path(choice.id), class: "btn-border-sm"%></span>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
     <%= form_with model: @micropost, local: true do |f|%>
       <div id="detail-association-insertion-point">
         <div class="judgement-btn">
@@ -37,6 +27,18 @@
           association_insertion_node: '#detail-association-insertion-point',
           association_insertion_method: 'append' }
            %>
+        </div>
+      </div>
+    <% end %>
+    <% @choice.each do |choice| %>
+      <div class="choice_show_row">
+        <div id="choice_<%= choice.id %>">
+          <%= render 'static_pages/choice', choice: choice %>
+          <div class="judgement-btn">
+            <% if choice.micropost.user != current_user && choice.user == current_user %>
+              <%= link_to '編集', edit_choice_path(choice.id), class: "btn-border-sm"%>
+            <% end %>
+          </div>
         </div>
       </div>
     <% end %>

@@ -25,10 +25,11 @@
           association_insertion_node: '#detail-association-insertion-point',
           association_insertion_method: 'append' }
            %>
+          <%= f.submit "更新", class: "btn-border-sm" %>
+          <%= f.fields_for :choices, @micropost.choices.where(user_id: @micropost.user.id) do |c| %>
+            <%= render 'choice_fields', f: c %>
+          <% end %>
         </div>
-        <%= f.fields_for :choices, @micropost.choices.where(user_id: @micropost.user.id) do |c| %>
-          <%= render 'choice_fields', f: c %>
-        <% end %>
       </div>
     </div>
     <div class="choice" id="chart-<%= @micropost.id %>">
