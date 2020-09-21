@@ -1,8 +1,8 @@
 <%= render 'shared/stats', user: @micropost.user %>
 <%= form_with model: @micropost, local: true do |f|%>
-  <%= render 'shared/error_messeges', object: f.object%>
   <div class="container_show">
     <div class="<%= @colors.sample %>">
+      <%= render 'shared/error_messeges', object: f.object%>
       <div class= "user_info">
         <%= gravatar_for @micropost.user %>
         <span class="user"><%= @micropost.user.name %></span>
