@@ -1,7 +1,7 @@
 class MicropostsController < ApplicationController
   before_action :logged_in_user, only:[:create,:destroy, :edit, :show ]
   before_action :set_micropost, only:[:show, :edit, :update]
-  before_action :set_colors, only:[:show, :edit]
+  before_action :set_colors, only:[:show, :edit, :update]
 
   def create
     @micropost = current_user.microposts.build(micropost_params)

@@ -1,7 +1,6 @@
-<%= render 'shared/stats', user: @micropost.user %>
-<%= form_with model: @micropost, local: true do |f|%>
-  <div class="container_show">
-    <div class="<%= @colors.sample %>">
+<div class="modal-dialog">
+  <%= form_with model: @micropost, local: true do |f|%>
+    <div class="sign_up col-md-8 col-md-offset-2">
       <%= render 'shared/error_messeges', object: f.object%>
       <div class= "user_info">
         <%= gravatar_for @micropost.user %>
@@ -32,8 +31,5 @@
         </div>
       </div>
     </div>
-    <div class="choice" id="chart-<%= @micropost.id %>">
-      <%= render 'users/pie_chart', micropost: @micropost %>
-    </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
