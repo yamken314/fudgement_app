@@ -2,5 +2,5 @@
   <%= f.text_area :name, class: "number" %>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= link_to "削除",choice_path(@choice), method: :delete, data: { confirm: "『#{f.object.name}』を削除しますか？", cancel: 'やめる', title: '削除確認' }, class: "btn-border-sm"%>
-  <%= f.submit "update?", class: "btn-border" %>
+  <%= f.submit "更新", class: "btn-border-sm" %>
 <% end %>
