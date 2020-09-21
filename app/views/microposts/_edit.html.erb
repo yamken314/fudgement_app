@@ -1,0 +1,35 @@
+<div class="modal-dialog">
+  <%= form_with model: @micropost, local: true do |f|%>
+    <div class="sign_up col-md-8 col-md-offset-2">
+      <%= render 'shared/error_messeges', object: f.object%>
+      <div class= "user_info">
+        <%= gravatar_for @micropost.user %>
+        <span class="user"><%= @micropost.user.name %></span>
+      </div>
+      <% if @micropost.images.attached? %>
+        <% @micropost.images.each do |image| %>
+          <div class="picture">
+            <%= image_tag image, class: "img" %>
+            <p class="img_check">削除する画像はチェックしてください<%= f.check_box :image_ids, {:multiple => true, class: "hoge"}, image.id, false %></p>
+          </div>
+        <% end %>
+      <% end %>
+      <%= f.file_field :images, multiple: true %>
+      <%= f.text_area :content, placeholder: "コメントを記入して下さい",class: "content" %>
+      <div id="detail-association-insertion-point">
+        <div class="judgement-btn">
+          <%= link_to_add_association 'ボタンを追加', f, :choices,
+          class: "btn-border-sm",
+          data: {
+          association_insertion_node: '#detail-association-insertion-point',
+          association_insertion_method: 'append' }
+           %>
+          <%= f.submit "更新", class: "btn-border-sm" %>
+          <%= f.fields_for :choices, @micropost.choices.where(user_id: @micropost.user.id) do |c| %>
+            <%= render 'choice_fields', f: c %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
