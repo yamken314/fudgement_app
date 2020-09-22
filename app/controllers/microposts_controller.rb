@@ -27,11 +27,14 @@ class MicropostsController < ApplicationController
   end
 
   def update
-    if @micropost.update(micropost_params)
+    if @micropost.update(micropost_params) then
       flash[:success] = "更新しました"
-      redirect_to micropost_path
-    else
+      redirect_to micropost_path  
+    elsif
+      @micropost.user == current_user then
       render 'edit'
+    else
+      render 'show'
     end
     if image = params[:micropost][:image_ids]
       image.each do |image_id|
