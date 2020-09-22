@@ -61,4 +61,10 @@ class User < ApplicationRecord
   def voted?(choice)
     votes.where(choice_id: choice.id).exists?
   end
+
+  def self.guest
+    find_or_create_by!(name: 'ゲスト',email: 'guest1@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+    end
+  end
 end

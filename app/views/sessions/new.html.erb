@@ -1,15 +1,17 @@
 <div class="sign_up col-md-4 col-md-offset-2">
   <h3>ログイン</h3>
-    <%= form_for(:session,url: login_path) do |f| %>
-      <%= f.label :email %>
-      <%= f.email_field :email, class:'form-control'%>
-      <%= f.label :password,"パスワード"%>
-      <%= f.password_field :password, class: 'form-control' %>
-      <%= f.label :remember_me, class:"checkbox inline" do%>
-        <%= f.check_box :remember_me%>
+  <%= form_for(:session,url: login_path) do |f| %>
+    <%= f.label :email %>
+    <%= f.email_field :email, class:'form-control'%>
+    <%= f.label :password,"パスワード"%>
+    <%= f.password_field :password, class: 'form-control' %>
+    <%= f.label :remember_me, class:"checkbox inline" do%>
+      <%= f.check_box :remember_me%>
         <span>次回から自動ログイン</span>
       <%end%>
-      <%= f.submit "ログイン", class: "btn btn-dark w-100" %>
-    <% end %>
-  </div>
+    <div class="guest_login">
+      <%= f.submit "ログイン", class: "btn-border" %>
+      <%= link_to 'ゲストログイン', guest_sign_in_path, class: "btn-border", method: :post %>
+    </div>
+  <% end %>
 </div>
