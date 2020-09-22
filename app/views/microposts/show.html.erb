@@ -20,6 +20,7 @@
       <p><%= @micropost.content %></p>
     </div>
     <%= form_with model: @micropost, local: true do |f|%>
+    <%= render 'shared/error_messeges', object: f.object%>
       <div id="detail-association-insertion-point">
         <div class="judgement-btn">
           <%= link_to_add_association 'ボタンを追加', f, :choices,

@@ -2,7 +2,6 @@
 <%= form_with model: @micropost, local: true do |f|%>
   <div class="container_show">
     <div class="<%= @colors.sample %>">
-      <%= render 'shared/error_messeges', object: f.object%>
       <div class= "user_info">
         <%= gravatar_for @micropost.user %>
         <span class="user"><%= @micropost.user.name %></span>
@@ -17,6 +16,7 @@
       <% end %>
       <%= f.file_field :images, multiple: true %>
       <%= f.text_area :content, placeholder: "コメントを記入して下さい",class: "content" %>
+      <%= render 'shared/error_messeges', object: f.object%>
       <div id="detail-association-insertion-point">
         <div class="judgement-btn">
           <%= link_to_add_association 'ボタンを追加', f, :choices,
