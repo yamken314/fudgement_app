@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.all.includes(:choices).with_attached_images.sorted_desc
-    @colors = ['post_details_show_1', 'post_details_show_2', 'post_details_show_3', 'post_details_show_4']
+    @colors = ['post_details_1','post_details_2', 'post_details_3', 'post_details_4']
   end
   
   def new
