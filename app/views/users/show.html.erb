@@ -1,39 +1,69 @@
-<%= render 'shared/stats', user: @user %>
-<% @microposts.each_with_index do |micropost, i| %>
-  <div class="container_show">
-    <div class="<%= @colors.shuffle[i % 4] %>">
-      <div class= "user_info">
-        <%= gravatar_for micropost.user %>
-        <span class="user"><%= micropost.user.name %></span>
+<div class="item profile">
+  <div class="profile_container">
+      <img class="image" src="/uploads/micropost/picture/311/adventure-1851092_1920.jpg">
+      <div class="avater">
+        <%= gravatar_profile @user %>
       </div>
-        <% if micropost.images.attached? %>
-          <% micropost.images.each do |image| %>
-            <div class="picture">
-              <%= image_tag image, class: "img" %>
-            </div>
-          <% end %>
-        <% end %>
-      <div class="comment">
-        <p><%= micropost.content %></p>
+    <div class="profile_user_info">
+      <div class="user_name">
+        <%= @user.name %>
       </div>
-      <div class="row">
-        <% micropost.choices&.each do |choice| %>
-          <div id="choice_<%= choice.id %>">
-            <% if current_user.voted?(choice) %>
-              <button class="voted">
-                <%= link_to choice.name, choice_vote_path(choice.id), method: :delete %>
-              </button>
-            <% else %>
-              <button class="vote">
-                <%= link_to choice.name, choice_vote_path(choice.id), method: :post %>
-              </button>
-            <% end %>
-          </div>
-        <% end %>
+      <div class="follow">
+        <div class="follow_count">
+          <a " href="<%= following_user_path(@user) %>">
+            <strong id="following" class="stat">
+              <%= @user.following.count %>
+            </strong>
+            フォロー中
+          </a>
+          <a href="<%= followers_user_path(@user) %>">
+            <strong id="followers" class="stat">
+              <%= @user.followers.count %>
+            </strong>
+            フォロワー
+          </a>
+        </div>
+        <%= render partial: 'users/follow_unfollow', locals: { user: @user } %>
       </div>
-    </div>
-    <div class="choice" id="chart-<%= micropost.id %>">
-      <%= render 'pie_chart', micropost: micropost %>
     </div>
   </div>
+</div>
+<% @microposts.each_with_index do |micropost, i| %>
+  <div class="item">
+      <div class="<%= @colors.shuffle[i % 4] %>">
+        <div class="user_info">
+          <%= gravatar_for micropost.user %>
+          <span class="user"><%= link_to micropost.user.name, micropost_path(micropost) %></span>
+        </div>
+          <% if micropost.images.attached? %>
+            <% micropost.images.each do |image| %>
+              <div class="picture">
+                <%= image_tag image, class: "img" %>
+              </div>
+            <% end %>
+          <% end %>
+        <div class="comment">
+          <p><%= micropost.content %></p>
+        </div>
+        <div class="row">
+          <% micropost.choices&.each do |choice| %>
+            <div id="choice_<%= choice.id %>">
+              <%= render 'static_pages/choice', choice: choice %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+  </div>
 <% end %>
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script>
+  window.onload = function() {
+    new Masonry('.container',{
+      itemSelector: '.item',
+      columnWidth: 50,
+      gutter: 3
+    });
+  };
+</script>
+
