@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_one_attached :profile_image
   has_many :choices
   has_many :microposts, dependent: :destroy
   has_many :votes
