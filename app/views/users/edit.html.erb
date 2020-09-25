@@ -2,6 +2,7 @@
   <h3>ユーザー編集</h3>
     <%= form_with model: @user, local: true do |f|%>
       <%= f.file_field :profile_image %>
+      <%= f.file_field :avatar %>
       <%= render 'shared/error_messeges', object: f.object%>
       <%= f.submit "編集", class: "btn btn-dark w-100" %>
     <% end %>
