@@ -2,10 +2,14 @@
   <div class="profile_container">
   <span class="edit"><%= link_to '編集', edit_user_path, class: "btn-border-sm"%></span>
     <% if @user.profile_image.attached? %>
-      <%= image_tag @user.profile_image, class: "image"%>
+      <%= image_tag @user.profile_image, class: "image" %>
     <% end %>
       <div class="avater">
-        <%= gravatar_profile @user %>
+        <% if @user.avatar.attached? %>
+          <%= image_tag @user.avatar, class: "avatar " %>
+        <% else %>
+          <%= gravatar_profile @user %>
+        <% end %>
       </div>
     <div class="profile_user_info">
       <div class="user_name">
