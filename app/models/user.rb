@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  belongs_to :profile
   has_one_attached :avatar
   has_one_attached :profile_image
   has_many :choices
