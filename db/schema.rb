@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_26_070101) do
+ActiveRecord::Schema.define(version: 2020_09_26_131128) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -53,11 +53,10 @@ ActiveRecord::Schema.define(version: 2020_09_26_070101) do
   end
 
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "introduction", null: false
+    t.string "introduction"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id", "introduction"], name: "index_profiles_on_user_id_and_introduction", unique: true
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
@@ -79,6 +78,7 @@ ActiveRecord::Schema.define(version: 2020_09_26_070101) do
     t.string "password_digest"
     t.string "remember_digest"
     t.boolean "admin", default: false
+    t.string "introduction"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
