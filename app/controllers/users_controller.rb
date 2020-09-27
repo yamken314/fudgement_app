@@ -35,19 +35,14 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
-      flash[:succces] = "編集しました"
-      redirect_to @user
-    elsif params[:user][:profile_image].present?
-      @user = User.find(params[:id])
-      @user.profile_image.attach(params[:user][:profile_image])
-      flash[:succces] = "編集しました"
-      redirect_to @user
-    elsif params[:user][:avatar].present?
-      @user = User.find(params[:id])
-      @user.avatar.attach(params[:user][:avatar])
-      flash[:succces] = "編集しました"
-      redirect_to @user
+    @user.attributes = user_params
+    if @user.save(context: :registration)
+        flash[:succces] = "編集しました"
+        redirect_to @user
+    elsif user_params[:avatar && :profile_image && :introduction].present?
+        @user.update(user_params)
+        flash[:succces] = "編集しました"
+        redirect_to @user
     else
       render 'edit'
     end
@@ -76,7 +71,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :introduction, :profile_image, :avatar)
   end
 
   def logged_in_user
