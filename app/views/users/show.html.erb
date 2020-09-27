@@ -33,6 +33,7 @@
         <%= render partial: 'users/follow_unfollow', locals: { user: @user } %>
       </div>
     </div>
+    <%= @user.introduction%>
   </div>
 </div>
 <% @microposts.each_with_index do |micropost, i| %>
