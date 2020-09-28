@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
+    if @user.save(context: :password)
       log_in @user
       flash[:succces] = "新規登録完了しました"
       redirect_to @user
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.attributes = user_params
-    if @user.save(context: :registration)
+    if @user.save(context: :password)
         flash[:succces] = "編集しました"
         redirect_to @user
     elsif user_params[:avatar && :profile_image && :introduction].present?
