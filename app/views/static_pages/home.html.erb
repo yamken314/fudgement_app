@@ -2,7 +2,11 @@
   <div class="item">
       <div class="<%= @colors.shuffle[i % 4] %>">
         <div class="user_info">
-          <%= gravatar_for micropost.user %>
+          <% if micropost.user.avatar.attached? %>
+            <%= image_tag micropost.user.avatar.variant(resize: "50x50").processed, class: "avatar " %>
+          <% else %>
+            <%= gravatar_for micropost.user %>
+          <% end %>
           <span class="user"><%= link_to micropost.user.name, micropost_path(micropost) %></span>
         </div>
           <% if micropost.images.attached? %>

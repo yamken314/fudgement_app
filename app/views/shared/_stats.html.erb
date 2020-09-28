@@ -1,6 +1,12 @@
 <% user ||= current_user %>
 <div class="follow_container">
-  <p class="gravatar_for"><%= gravatar_for user %></p>
+  <p class="gravatar_for">
+    <% if user.avatar.attached? %>
+      <%= image_tag user.avatar.variant(resize: "50x50").processed, class: "avatar " %>
+    <% else %>
+      <%= gravatar_for user %>
+    <% end %>
+  </p>
   <h4 class="user"><%= user.name %></h4>
   <div class="count">
     <a href="<%= following_user_path(user) %>">

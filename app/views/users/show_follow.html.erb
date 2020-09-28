@@ -2,7 +2,13 @@
 <h1><%= @title %></h1>
 <% @users.each do |user| %>
   <div class="follow_list">
-    <p class="gravatar_follow"><%= gravatar_for user %></p>
+    <p class="gravatar_follow">
+      <% if user.avatar.attached? %>
+        <%= image_tag user.avatar.variant(resize: "50x50").processed, class: "avatar " %>
+      <% else %>
+        <%= gravatar_for user %>
+      <% end %>
+    </p>
     <h4 class="user"><%= link_to user.name, user %></h4>
   </div>
 <% end %>
