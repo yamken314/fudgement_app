@@ -12,7 +12,7 @@
           <% if micropost.images.attached? %>
             <% micropost.images.each do |image| %>
               <div class="picture">
-                <%= image_tag image, class: "img" %>
+                <%= image_tag image.variant(resize: "500x500").processed, class: "img" %>
               </div>
             <% end %>
           <% end %>
