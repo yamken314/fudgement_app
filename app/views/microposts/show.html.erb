@@ -6,7 +6,11 @@
       <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
     <% end %>
     <div class= "user_info">
-      <%= gravatar_for @micropost.user %>
+      <% if @micropost.user.avatar.attached? %>
+        <%= image_tag @micropost.user.avatar.variant(resize: "50x50").processed, class: "avatar " %>
+      <% else %>
+        <%= gravatar_for @micropost.user %>
+      <% end %>
       <span class="user"><%= @micropost.user.name %></span>
     </div>
       <% if @micropost.images.attached? %>

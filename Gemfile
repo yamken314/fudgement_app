@@ -36,8 +36,7 @@ gem 'faker'
 gem 'will_paginate',           '3.1.7'
 gem 'bootstrap-will_paginate', '1.0.0'
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
-gem 'mini_magick'
+gem 'mini_magick', '~> 4.8'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'bootsnap', require: false
@@ -53,6 +52,7 @@ group :development, :test do
   gem "chartkick"
   gem 'chartable'
   gem 'cocoon'
+  gem 'image_processing', '~> 1.2'
 end
 
 group :development do

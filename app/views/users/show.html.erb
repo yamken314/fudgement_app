@@ -2,11 +2,11 @@
   <div class="profile_container">
   <span class="edit"><%= link_to '編集', edit_user_path, class: "btn-border-sm"%></span>
     <% if @user.profile_image.attached? %>
-      <%= image_tag @user.profile_image, class: "image" %>
+      <%= image_tag @user.profile_image.variant(resize: "500x500").processed, class: "image" %>
     <% end %>
-      <div class="avater">
+      <div class="avater_container">
         <% if @user.avatar.attached? %>
-          <%= image_tag @user.avatar, class: "avatar " %>
+          <%= image_tag @user.avatar.variant(resize: "100x100").processed, class: "avatar_profile " %>
         <% else %>
           <%= gravatar_profile @user %>
         <% end %>
@@ -40,13 +40,17 @@
   <div class="item">
       <div class="<%= @colors.shuffle[i % 4] %>">
         <div class="user_info">
-          <%= gravatar_for micropost.user %>
+          <% if micropost.user.avatar.attached? %>
+            <%= image_tag micropost.user.avatar.variant(resize: "50x50").processed, class: "avatar " %>
+          <% else %>
+            <%= gravatar_for micropost.user %>
+          <% end %>
           <span class="user"><%= link_to micropost.user.name, micropost_path(micropost) %></span>
         </div>
           <% if micropost.images.attached? %>
             <% micropost.images.each do |image| %>
               <div class="picture">
-                <%= image_tag image, class: "img" %>
+                <%= image_tag image.variant(resize: "500x500"), class: "img" %>
               </div>
             <% end %>
           <% end %>
