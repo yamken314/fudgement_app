@@ -13,7 +13,7 @@
       </div>
     <div class="profile_user_info">
       <div class="user_name">
-        <%= @user.name %>
+        <p><%= @user.name %></p>
       </div>
       <div class="follow">
         <div class="follow_count">
@@ -33,7 +33,9 @@
         <%= render partial: 'users/follow_unfollow', locals: { user: @user } %>
       </div>
     </div>
-    <%= @user.introduction%>
+    <div class="introduction">
+      <p><%= @user.introduction%></p>
+    </div>
   </div>
 </div>
 <% @microposts.each_with_index do |micropost, i| %>
