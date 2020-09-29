@@ -8,7 +8,7 @@
         <%= gravatar_for user %>
       <% end %>
     </p>
-    <h4 class="user"><%= link_to user.name, user %></h4>
+    <h4 class="user"><%= link_to user.name, user, data: { "turbolinks" => false } %></h4>
   </div>
 <% end %>
 <%= will_paginate %>
