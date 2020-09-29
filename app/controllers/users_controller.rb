@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_action :set_users, only: [:following, :followers]
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.includes(avatar_attachment: :blob).paginate(page: params[:page])
   end
 
   def show
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     if @user.save(context: :password)
         flash[:succces] = "編集しました"
         redirect_to @user
-    elsif user_params[:avatar && :profile_image && :introduction].present?
+    elsif user_params[:avatar && :profile_image && :introduction && :name].present?
         @user.update(user_params)
         flash[:succces] = "編集しました"
         redirect_to @user

@@ -1,9 +1,10 @@
 <div class="item profile">
   <div class="profile_container">
-  <span class="edit"><%= link_to '編集', edit_user_path, class: "btn-border-sm"%></span>
-    <% if @user.profile_image.attached? %>
-      <%= image_tag @user.profile_image.variant(resize: "500x500").processed, class: "image" %>
-    <% end %>
+    <div class="image_container">
+      <span class="edit"><%= link_to '編集', edit_user_path, class: "btn-border-sm"%></span>
+      <% if @user.profile_image.attached? %>
+        <%= image_tag @user.profile_image.variant(resize: "400x400").processed, class: "image" %>
+      <% end %>
       <div class="avater_container">
         <% if @user.avatar.attached? %>
           <%= image_tag @user.avatar.variant(resize: "100x100").processed, class: "avatar_profile " %>
@@ -11,9 +12,10 @@
           <%= gravatar_profile @user %>
         <% end %>
       </div>
+    </div>
     <div class="profile_user_info">
       <div class="user_name">
-        <%= @user.name %>
+        <p><%= @user.name %></p>
       </div>
       <div class="follow">
         <div class="follow_count">
@@ -33,7 +35,9 @@
         <%= render partial: 'users/follow_unfollow', locals: { user: @user } %>
       </div>
     </div>
-    <%= @user.introduction%>
+    <div class="introduction">
+      <p><%= @user.introduction%></p>
+    </div>
   </div>
 </div>
 <% @microposts.each_with_index do |micropost, i| %>
