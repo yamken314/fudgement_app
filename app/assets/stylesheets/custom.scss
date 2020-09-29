@@ -470,16 +470,43 @@ background-image: linear-gradient(315deg, #fee2f8 0%, #dcf8ef 74%);
   padding: 20px;
   border-radius: 1.5em;
   @include purple_back;
-  display: flex;
-  position: relative;
-}
-.back_ground_image {
-  height: 50%;
-}
-.image {
-  width: 100%;
-  height: 70%;
-  object-fit: cover;
+  overflow: visible;
+  .image_container {
+    position: relative;
+    .image {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+    .avater_container{
+      position: absolute;
+      right: 77%;
+      top: 88%;
+    }
+  }
+  .profile_user_info {
+    float: right;
+    display: flex;
+    margin: 3% 0 0;
+    width: 75%;
+    justify-content: space-between;
+     .user_name p {
+      font-size: large;
+    }
+    .follow {
+      text-align: center;
+      .follow_count {
+        margin-bottom: 5%;
+      }
+    }
+  }
+  .introduction {
+    width: 100%;
+    margin: 19% 0 0;
+    p {
+      font-size: medium;
+    }
+  }
 }
 
 .gravatar_profile {
@@ -487,14 +514,8 @@ background-image: linear-gradient(315deg, #fee2f8 0%, #dcf8ef 74%);
   object-fit: cover;
   border: solid;
   position: absolute;
-  right: 72%;
-  top: 54%;
 }
-.avater_container{
-  position: absolute;
-  right: 75%;
-  top: 65%;
-}
+
 .avatar {
   border-radius: 50%;
   object-fit: cover;
@@ -503,27 +524,4 @@ background-image: linear-gradient(315deg, #fee2f8 0%, #dcf8ef 74%);
   border-radius: 50%;
   object-fit: cover;
   border: solid;
-}
-.profile_user_info {
-  float: right;
-  display: flex;
-  margin: 3% 0 0;
-  width: 75%;
-  justify-content: space-between;
-   p {
-    font-size: large;
-  }
-}
-.follow {
-  text-align: center;
-}
-.follow_count {
-  margin-bottom: 5%;
-}
-.introduction {
-  width: 100%;
-  margin: 19% 5% 0;
-  p {
-    font-size: medium;
-  }
 }
