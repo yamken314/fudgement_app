@@ -1,0 +1,68 @@
+<%= form_with model: @user, local: true do |f|%>
+  <div class="modal-dialog">
+    <div class="profile_modal col-md-10 col-md-offset-2">
+      <div class="profile_container">
+        <div class="image_container">
+          <span class="edit"><%= f.submit "更新", class: "btn-border-sm" %></span>
+          <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+          <% if @user.profile_image.attached? %>
+            <%= image_tag @user.profile_image.variant(resize: "400x400").processed, class: "image", id: :img_prev %>
+          <% end %>
+          <label class="label">
+            <i class="fa fa-image" ><%= f.file_field :profile_image, id: :user_img %></i>
+          </label>
+          <div class="avater_container_modal">
+            <% if @user.avatar.attached? %>
+              <%= image_tag @user.avatar.variant(resize: "100x100").processed, class: "avatar_profile", id: :avatar_prev %>
+            <% else %>
+              <%= gravatar_profile @user %>
+            <% end %>
+            <label class="label">
+              <i class="fa fa-image" ><%= f.file_field :avatar, id: :avatar_img %></i>
+            </label>
+          </div>
+        </div>
+        <div class="profile_user_info_modal">
+          <div class="user_name">
+            <%= f.label :name,"ユーザー名"%>
+            <%= f.text_field :name, class:'form-control'%>
+          </div>
+        </div>
+        <div class="introduction">
+          <%= f.label :introduction,"自己紹介"%>
+          <%= f.text_area :introduction, placeholder: "自己紹介文を記入して下さい",class: 'form-control'%>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<script type="text/javascript">
+  $(function() {
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+    $('#img_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#user_img").change(function(){
+        readURL(this);
+    });
+  });
+  $(function() {
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+    $('#avatar_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#avatar_img").change(function(){
+        readURL(this);
+    });
+  });
+</script>

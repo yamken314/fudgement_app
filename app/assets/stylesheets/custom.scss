@@ -519,9 +519,68 @@ background-image: linear-gradient(315deg, #fee2f8 0%, #dcf8ef 74%);
 .avatar {
   border-radius: 50%;
   object-fit: cover;
+  width: 50px;
+  height: 50px;
 }
 .avatar_profile {
   border-radius: 50%;
   object-fit: cover;
   border: solid;
+  width: 100px;
+  height: 100px;
 }
+#avatar_prev {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 12%;
+}
+#user_img {
+  display: none;
+}
+#avatar_img {
+  display: none;
+}
+.profile_modal{
+  margin: 1%;
+  padding: 20px;
+  border-radius: 1.5em;
+  @include purple_back;
+  overflow: visible;
+  .image_container {
+    position: relative;
+    .image {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      margin-bottom: 4%;
+  }
+}
+.avater_container_modal{
+  position: absolute;
+      right: 78%;
+      top: 80%;
+}
+  .profile_user_info_modal {
+    display: flex;
+    margin:4% 31% 4%;
+     .user_name p {
+      font-size: large;
+    }
+    .follow {
+      text-align: center;
+      .follow_count {
+        margin-bottom: 5%;
+      }
+    }
+  }
+  .introduction {
+    width: 100%;
+    p {
+      font-size: medium;
+    }
+  }
+}
+.label{
+  cursor: pointer;
+  font-size:2em;
+ }
