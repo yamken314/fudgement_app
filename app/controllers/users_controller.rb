@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :currect_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
   before_action :set_users, only: [:following, :followers]
+  before_action :set_delete, only: [:delete_profile_image, :delete_avatar]
 
   def index
     @users = User.includes(avatar_attachment: :blob).paginate(page: params[:page])
@@ -54,6 +55,12 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def delete_profile_image
+  end
+
+  def delete_avatar
+  end
+
   def following
   end
 
@@ -69,6 +76,13 @@ class UsersController < ApplicationController
     @users = users.paginate(page: params[:page])
     render 'show_follow'
   end
+
+  def set_delete
+    @user = User.find(params[:id])
+    action_name == 'delete_profile_image' ? @user.profile_image.purge : @user.avatar.purge
+    redirect_to @user
+  end
+
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :introduction, :profile_image, :avatar)
