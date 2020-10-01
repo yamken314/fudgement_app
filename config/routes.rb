@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get :following, :followers
+      delete :delete_profile_image, :delete_avatar
     end
   end
   resources :microposts

@@ -5,15 +5,17 @@
         <div class="image_container">
           <span class="edit"><%= f.submit "更新", class: "btn-border-sm" %></span>
           <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
-          <% if @user.profile_image.attached? %>
-            <%= image_tag @user.profile_image.variant(resize: "400x400").processed, class: "image", id: :img_prev %>
-          <% end %>
+            <% if @user.profile_image.attached? %>
+              <%= image_tag @user.profile_image.variant(resize: "400x400").processed, class: "image", id: :img_prev %>
+              <%= link_to '削除', delete_profile_image_user_path, method: :delete, data: { confirm: 'プロフィール画像削除しますか?' } %>
+            <% end %>
           <label class="label">
             <i class="fa fa-image" ><%= f.file_field :profile_image, id: :user_img %></i>
           </label>
           <div class="avater_container_modal">
             <% if @user.avatar.attached? %>
               <%= image_tag @user.avatar.variant(resize: "100x100").processed, class: "avatar_profile", id: :avatar_prev %>
+              <%= link_to '削除', delete_avatar_user_path, method: :delete, data: { confirm: 'アバター画像削除しますか?' } %>
             <% else %>
               <%= gravatar_profile @user %>
             <% end %>
