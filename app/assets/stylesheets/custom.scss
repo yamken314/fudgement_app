@@ -557,9 +557,13 @@ background-image: linear-gradient(315deg, #fee2f8 0%, #dcf8ef 74%);
   }
   .profile_user_info_modal {
     display: flex;
-    margin:4% 31% 4%;
-     .user_name p {
-      font-size: large;
+    margin:4% 25% 4%;
+     .user_name {
+      width: 100%;
+      text-align: center;
+      p {
+        font-size: large;
+      }
     }
     .follow {
       text-align: center;
