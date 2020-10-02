@@ -6,7 +6,7 @@
       <% if @user.profile_image.attached? %>
         <%= image_tag @user.profile_image.variant(resize: "400x400").processed, class: "image" %>
       <% else %>
-        <div class="default_image"></div>
+        <%= image_tag '/noimage.png', alt: 'プロフィール画像',class: "image", id: :img_prev %>
       <% end %>
       <div class="avater_container">
         <% if @user.avatar.attached? %>
