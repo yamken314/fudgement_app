@@ -487,20 +487,6 @@ background-image: linear-gradient(315deg, #fee2f8 0%, #dcf8ef 74%);
       position: absolute;
       right: 78%;
       top: 88%;
-      .avatar_profile {
-        border-radius: 50%;
-        object-fit: cover;
-        border: solid;
-        width: 100px;
-        height: 100px;
-      }
-      .gravatar_profile {
-        border-radius: 50%;
-        object-fit: cover;
-        border: solid;
-        width: 100px;
-        height: 100px;
-      }
     }
   }
   .profile_user_info {
@@ -535,7 +521,10 @@ background-image: linear-gradient(315deg, #fee2f8 0%, #dcf8ef 74%);
   height: 50px;
 }
 
-#avatar_prev {
+.gravatar_profile, .avatar_profile, #avatar_prev{
+  border-radius: 50%;
+  object-fit: cover;
+  border: solid;
   width: 100px;
   height: 100px;
   margin-bottom: 12%;
