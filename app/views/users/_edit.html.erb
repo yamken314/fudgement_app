@@ -8,6 +8,8 @@
             <% if @user.profile_image.attached? %>
               <%= image_tag @user.profile_image.variant(resize: "400x400").processed, class: "image", id: :img_prev %>
               <%= link_to '削除', delete_profile_image_user_path, method: :delete, data: { confirm: 'プロフィール画像削除しますか?' } %>
+            <% else %>
+              <%= image_tag '/noimage.png', alt: 'プロフィール画像',class: "image", id: :img_prev %>
             <% end %>
           <label class="label">
             <i class="fa fa-image" ><%= f.file_field :profile_image, id: :user_img %></i>
