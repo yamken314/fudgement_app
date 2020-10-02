@@ -473,6 +473,11 @@ background-image: linear-gradient(315deg, #fee2f8 0%, #dcf8ef 74%);
   overflow: visible;
   .image_container {
     position: relative;
+    .default_image {
+      height: 400px;
+      background-color: #ffffff61;
+      clear: both;
+    }
     .image {
       width: 100%;
       height: 400px;
@@ -480,7 +485,7 @@ background-image: linear-gradient(315deg, #fee2f8 0%, #dcf8ef 74%);
     }
     .avater_container{
       position: absolute;
-      right: 77%;
+      right: 78%;
       top: 88%;
     }
   }
@@ -509,27 +514,17 @@ background-image: linear-gradient(315deg, #fee2f8 0%, #dcf8ef 74%);
   }
 }
 
-.gravatar_profile {
-  border-radius: 50%;
-  object-fit: cover;
-  border: solid;
-  position: absolute;
-}
-
 .avatar {
   border-radius: 50%;
   object-fit: cover;
   width: 50px;
   height: 50px;
 }
-.avatar_profile {
+
+.gravatar_profile, .avatar_profile, #avatar_prev{
   border-radius: 50%;
   object-fit: cover;
   border: solid;
-  width: 100px;
-  height: 100px;
-}
-#avatar_prev {
   width: 100px;
   height: 100px;
   margin-bottom: 12%;
