@@ -36,21 +36,19 @@ class MicropostsController < ApplicationController
     else
       render 'show'
     end
-    if image = params[:micropost][:image_ids]
-      image.each do |image_id|
-        @micropost.images.find(image_id).purge
-      end
+    if image = params[:micropost][:image_id]
+      @micropost.image.purge
     end
   end
 
   private
 
     def micropost_params
-      params.require(:micropost).permit(:content, images: [], choices_attributes: [:id,:name, :user_id, :_destroy])
+      params.require(:micropost).permit(:content, :image, choices_attributes: [:id,:name, :user_id, :_destroy])
     end
 
     def set_micropost
-      @micropost = Micropost.with_attached_images.find(params[:id])
+      @micropost = Micropost.with_attached_image.find(params[:id])
       @choice = @micropost.choices.eager_load(:user)
     end
 
