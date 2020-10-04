@@ -6,12 +6,14 @@
         <%= gravatar_for @micropost.user %>
         <span class="user"><%= @micropost.user.name %></span>
       </div>
-      <% if @micropost.image.attached? %>
-        <div class="picture">
+      <div class="picture">
+        <% if @micropost.image.attached? %>
           <%= image_tag @micropost.image, class: "img", id: :img_prev %>
           <p class="img_check">削除する画像はチェックしてください<%= f.check_box :image_id, {:multiple => true}, @micropost.image.id, false %></p>
-        </div>
-      <% end %>
+        <% else %>
+          <%= image_tag '/noimage.png', alt: 'プロフィール画像',class: "img", id: :img_prev %>
+        <% end %>
+      </div>
       <label class="label">
         <i class="fa fa-image" ><%= f.file_field :image, id: :user_img %></i>
       </label>
