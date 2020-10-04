@@ -9,12 +9,10 @@
           <% end %>
           <span class="user"><%= link_to micropost.user.name, micropost_path(micropost) %></span>
         </div>
-          <% if micropost.images.attached? %>
-            <% micropost.images.each do |image| %>
-              <div class="picture">
-                <%= image_tag image.variant(resize: "500x500").processed, class: "img" %>
-              </div>
-            <% end %>
+          <% if micropost.image.attached? %>
+            <div class="picture">
+              <%= image_tag micropost.image.variant(resize: "500x500").processed, class: "img" %>
+            </div>
           <% end %>
         <div class="comment">
           <p><%= micropost.content %></p>

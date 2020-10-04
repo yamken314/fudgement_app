@@ -13,12 +13,10 @@
       <% end %>
       <span class="user"><%= @micropost.user.name %></span>
     </div>
-      <% if @micropost.images.attached? %>
-        <% @micropost.images.each do |image| %>
-          <div class="picture">
-            <%= image_tag image, class: "img" %>
-          </div>
-        <% end %>
+      <% if @micropost.image.attached? %>
+        <div class="picture">
+          <%= image_tag @micropost.image, class: "img" %>
+        </div>
       <% end %>
     <div class="comment">
       <p><%= @micropost.content %></p>

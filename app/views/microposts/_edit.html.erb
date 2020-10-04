@@ -6,16 +6,14 @@
         <%= gravatar_for @micropost.user %>
         <span class="user"><%= @micropost.user.name %></span>
       </div>
-      <% if @micropost.images.attached? %>
-        <% @micropost.images.each do |image| %>
-          <div class="picture">
-            <%= image_tag image, class: "img", id: :img_prev %>
-            <p class="img_check">削除する画像はチェックしてください<%= f.check_box :image_ids, {:multiple => true, class: "hoge"}, image.id, false %></p>
-          </div>
-        <% end %>
+      <% if @micropost.image.attached? %>
+        <div class="picture">
+          <%= image_tag @micropost.image, class: "img", id: :img_prev %>
+          <p class="img_check">削除する画像はチェックしてください<%= f.check_box :image_id, {:multiple => true}, @micropost.image.id, false %></p>
+        </div>
       <% end %>
       <label class="label">
-        <i class="fa fa-image" ><%= f.file_field :images, id: :user_img %></i>
+        <i class="fa fa-image" ><%= f.file_field :image, id: :user_img %></i>
       </label>
       <%= f.text_area :content, placeholder: "コメントを記入して下さい",class: "content" %>
       <div id="detail-association-insertion-point">
