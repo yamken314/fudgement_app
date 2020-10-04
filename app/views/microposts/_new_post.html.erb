@@ -5,7 +5,7 @@
       <div class="picture">
         <%= image_tag '/noimage.png', alt: 'プロフィール画像',class: "img", id: :img_prev %>
         <label class="label">
-          <i class="fa fa-image" ><%= f.file_field :images, multiple: true, id: :user_img %></i>
+          <i class="fa fa-image" ><%= f.file_field :image, id: :user_img %></i>
         </label>
       </div>
       <div class="field col-md-12">

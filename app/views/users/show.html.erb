@@ -54,8 +54,8 @@
           <% end %>
           <span class="user"><%= link_to micropost.user.name, micropost_path(micropost) %></span>
         </div>
-          <% if micropost.images.attached? %>
-            <% micropost.images.each do |image| %>
+          <% if micropost.image.attached? %>
+            <% micropost.image.each do |image| %>
               <div class="picture">
                 <%= image_tag image.variant(resize: "500x500"), class: "img" %>
               </div>
