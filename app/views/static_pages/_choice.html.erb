@@ -7,3 +7,8 @@
     <%= link_to choice.name, choice_vote_path(choice.id), method: :post, remote: true %>
   </button>
 <% end %>
+<div class="judgement-btn">
+  <% if choice.micropost.user != current_user && choice.user == current_user %>
+    <%= link_to '編集', edit_choice_path(choice.id), remote: true, class: "btn-border-sm"%>
+  <% end %>
+</div>

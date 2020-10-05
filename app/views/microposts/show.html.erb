@@ -38,12 +38,6 @@
       <div class="choice_show_row">
         <div id="choice_<%= choice.id %>">
           <%= render 'static_pages/choice', choice: choice %>
-          <div class="judgement-btn">
-            <% if choice.micropost.user != current_user && choice.user == current_user %>
-              <%= link_to '編集', edit_choice_path(choice.id), remote: true, class: "btn-border-sm"%>
-              <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
-            <% end %>
-          </div>
         </div>
       </div>
     <% end %>
