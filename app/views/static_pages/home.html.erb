@@ -1,41 +1,44 @@
-<% @microposts.each_with_index do |micropost, i| %>
-  <div class="item">
-      <div class="<%= @colors.shuffle[i % 4] %>">
-        <div class="user_info">
-          <% if micropost.user.avatar.attached? %>
-            <%= image_tag micropost.user.avatar.variant(resize: "50x50").processed, class: "avatar " %>
-          <% else %>
-            <%= gravatar_for micropost.user %>
-          <% end %>
-          <span class="user"><%= link_to micropost.user.name, micropost_path(micropost) %></span>
+<div class="home_container">
+<%= render 'layouts/side-bar' %>
+  <% @microposts.each_with_index do |micropost, i| %>
+    <div class="item">
+        <div class="<%= @colors.shuffle[i % 4] %>">
+          <div class="user_info">
+            <% if micropost.user.avatar.attached? %>
+              <%= image_tag micropost.user.avatar.variant(resize: "50x50").processed, class: "avatar " %>
+            <% else %>
+              <%= gravatar_for micropost.user %>
+            <% end %>
+            <span class="user"><%= link_to micropost.user.name, micropost_path(micropost) %></span>
+          </div>
+            <% if micropost.image.attached? %>
+              <div class="picture">
+                <%= image_tag micropost.image.variant(resize: "500x500").processed, class: "img" %>
+              </div>
+            <% end %>
+          <div class="comment">
+            <p><%= micropost.content %></p>
+          </div>
+          <div class="row">
+            <% micropost.choices.eager_load(:user)&.each do |choice| %>
+              <div id="choice_<%= choice.id %>">
+                <%= render 'choice', choice: choice %>
+              </div>
+            <% end %>
+          </div>
         </div>
-          <% if micropost.image.attached? %>
-            <div class="picture">
-              <%= image_tag micropost.image.variant(resize: "500x500").processed, class: "img" %>
-            </div>
-          <% end %>
-        <div class="comment">
-          <p><%= micropost.content %></p>
-        </div>
-        <div class="row">
-          <% micropost.choices.eager_load(:user)&.each do |choice| %>
-            <div id="choice_<%= choice.id %>">
-              <%= render 'choice', choice: choice %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-  </div>
-<% end %>
-    
-<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
-<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    </div>
+  <% end %>
+</div>
+<div class="paginate_container">
+  <%= paginate @microposts %>
+</div>
+
 <script>
-  window.onload = function() {
-    new Masonry('.container',{
+var $container = $('.home_container');
+	$container.imagesLoaded(function(){
+		$container.masonry({
       itemSelector: '.item',
-      columnWidth: 50,
-      gutter: 3
-    });
-  };
+		});
+  });
 </script>
