@@ -11,6 +11,10 @@
   <% if choice.micropost.user != current_user && choice.user == current_user %>
     <%= link_to '編集', edit_choice_path(choice.id), remote: true, class: "btn-border-sm"%>
   <% elsif choice.user %>
-    <%= choice.user.name %>
+    <% if choice.user.avatar.attached? %>
+      <%= image_tag choice.user.avatar.variant(resize: "50x50").processed, class: "avatar " %>
+    <% else %>
+      <%= gravatar_for choice.user %>
+    <% end %>
   <% end %>
 </div>
