@@ -35,12 +35,19 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'faker'
 gem 'will_paginate',           '3.1.7'
 gem 'bootstrap-will_paginate', '1.0.0'
+gem 'dotenv-rails'
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'bootsnap', require: false
 # Reduces boot times through caching; required in config/boot.rb
+gem 'rails-i18n'
+gem "chartkick"
+gem 'chartable'
+gem 'cocoon'
+gem 'image_processing', '~> 1.2'
+gem 'kaminari'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -48,12 +55,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.6.0'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
-  gem 'rails-i18n'
-  gem "chartkick"
-  gem 'chartable'
-  gem 'cocoon'
-  gem 'image_processing', '~> 1.2'
-  gem 'kaminari'
 end
 
 group :development do
@@ -70,8 +71,9 @@ group :development do
 end
 
 group :production do
-  
+
   gem 'fog', '1.42'
+  gem 'unicorn'
   end
 
 group :test do
