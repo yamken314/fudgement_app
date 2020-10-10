@@ -1,6 +1,8 @@
-<%= render 'layouts/side-bar' %>
-<%= render 'shared/stats', user: @micropost.user %>
 <div class="container_show">
+  <div class="side_bar">
+    <%= render 'layouts/side-bar' %>
+    <%= render 'shared/stats', user: @micropost.user %>
+  </div>
   <div class="<%= @colors.sample %>">
     <% if current_user?(@micropost.user) %>
       <span class="edit"><%= link_to '編集', edit_micropost_path, remote: true, class: "btn-border-sm"%></span>

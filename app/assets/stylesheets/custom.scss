@@ -238,17 +238,17 @@ input {
   float: left;
 }
 .choice{
-  float: left;
-  width: 43%;
   padding-top: 2%;
+  width: 300px;
   .choice_name{
     font-size: large;
   }
 }
 
 .container_show{
-  display: table-row;
-  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: auto;
 }
 .post_details_1{
   margin-top: 10px;
@@ -282,7 +282,7 @@ input {
 .post_details_show_1{
   align-items: center;
   float: left;
-  width: 45%;
+  width: 420px;
   margin: 2% 5%;
   padding: 20px;
   height: auto;
@@ -292,7 +292,7 @@ input {
 .post_details_show_2{
   align-items: center;
   float: left;
-  width: 45%;
+  width: 420px;
   margin: 2% 5%;
   padding: 20px;
   height: auto;
@@ -302,7 +302,7 @@ input {
 .post_details_show_3{
   align-items: center;
   float: left;
-  width: 45%;
+  width: 420px;
   margin: 2% 5%;
   padding: 20px;
   height: auto;
@@ -312,7 +312,7 @@ input {
 .post_details_show_4{
   align-items: center;
   float: left;
-  width: 45%;
+  width: 420px;
   margin: 2% 5%;
   padding: 20px;
   height: auto;
