@@ -12,6 +12,7 @@
     <div class="guest_login">
       <%= f.submit "ログイン", class: "btn-border" %>
       <%= link_to 'ゲストログイン', guest_sign_in_path, class: "btn-border", method: :post %>
+      <%= link_to "Twitterアカウントでログイン", "/auth/twitter" %>
     </div>
   <% end %>
 </div>
