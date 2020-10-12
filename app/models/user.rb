@@ -15,14 +15,19 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
   attr_accessor :remember_token
-  before_save { self.email = email.downcase }
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :name, presence: true, length: { maximum: 50 }, unless: :uid?
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  before_save :downcase_email, unless: :uid? 
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
-                    uniqueness: { case_sensitive: false }
+                    uniqueness: { case_sensitive: false },
+                    unless: :uid?
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }, on: :password
+  validates :password, presence: true, length: { minimum: 6 }, on: :password, unless: :uid?
+
+  def downcase_email
+    self.email = email.downcase
+  end
 
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
@@ -67,6 +72,16 @@ class User < ApplicationRecord
   def self.guest
     find_or_create_by!(name: 'ゲスト',email: 'guest1@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
+    end
+  end
+
+  def self.find_or_create_from_auth(auth)
+    provider = auth[:provider]
+    uid = auth[:uid]
+    name = auth[:info][:name]
+    
+    self.find_or_create_by(provider: provider, uid: uid) do |user|
+      user.name = name
     end
   end
 end
