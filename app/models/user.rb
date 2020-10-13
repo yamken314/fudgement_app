@@ -69,6 +69,8 @@ class User < ApplicationRecord
     votes.where(choice_id: choice.id).exists?
   end
 
+  private
+  
   def self.guest
     find_or_create_by!(name: 'ゲスト',email: 'guest1@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
@@ -79,9 +81,22 @@ class User < ApplicationRecord
     provider = auth[:provider]
     uid = auth[:uid]
     name = auth[:info][:name]
-    
+    image = auth[:info][:image]
+    image_url = auth[:info][:image]
+    uri = URI.parse(image_url)
+    image = uri.open
+    password = SecureRandom.urlsafe_base64
+    email = User.dummy_email(auth)
+  
     self.find_or_create_by(provider: provider, uid: uid) do |user|
       user.name = name
+      user.avatar.attach(io: image, filename: "#{user.name}_profile.png")
+      user.password = password
+      user.email = email
     end
+  end
+
+  def self.dummy_email(auth)
+    "#{auth.uid}-#{auth.provider}@example.com"
   end
 end
