@@ -6,7 +6,7 @@
   <div class="<%= @colors.sample %>">
     <% if current_user?(@micropost.user) %>
       <span class="edit"><%= link_to '編集', edit_micropost_path, remote: true, class: "btn-border-sm"%></span>
-      <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+      <div id="" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
     <% end %>
     <div class= "user_info">
       <% if @micropost.user.avatar.attached? %>
