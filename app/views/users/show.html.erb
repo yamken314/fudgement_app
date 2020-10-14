@@ -62,7 +62,7 @@
             <p><%= micropost.content %></p>
           </div>
           <div class="row">
-            <% micropost.choices&.each do |choice| %>
+            <% micropost.choices.includes(:user)&.each do |choice| %>
               <div id="choice_<%= choice.id %>">
                 <%= render 'static_pages/choice', choice: choice %>
               </div>
