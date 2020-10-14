@@ -258,28 +258,28 @@ input {
 }
 .post_details_1{
   margin-top: 10px;
-  padding: 20px;
+  padding: 10px;
   height: auto;
   border-radius: 1.5em;
   @include orange_back;
 }
 .post_details_2{
   margin-top: 10px;
-  padding: 20px;
+  padding: 10px;
   height: auto;
   border-radius: 1.5em;
   @include blue_back;
 }
 .post_details_3{
   margin-top: 10px;
-  padding: 20px;
+  padding: 10px;
   height: auto;
   border-radius: 1.5em;
   @include green_back;
 }
 .post_details_4{
   margin-top: 10px;
-  padding: 20px;
+  padding: 10px;
   height: auto;
   border-radius: 1.5em;
   @include purple_back;
@@ -384,14 +384,14 @@ input {
 }
 .comment{
   margin: 10px 0 10px 0;
-  background-color: #f3e6e6;
+  background-color: #fbfafa52;
   border:solid 1px #bbb1a1;
   border-radius: 8px;
   top: 0;
   transition: .2s box-shadow,.2s top,.4s;
   word-wrap: break-word;
   p{
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin: 10px;
   }
 }
