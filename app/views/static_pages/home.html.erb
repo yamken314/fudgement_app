@@ -13,7 +13,9 @@
           </div>
             <% if micropost.image.attached? %>
               <div class="picture">
-                <%= image_tag micropost.image.variant(resize: "500x500").processed, class: "img" %>
+                <%= link_to micropost.image, "data-lightbox" => micropost.image do %>
+                  <%= image_tag micropost.image.variant(resize: "500x500").processed, class: "img" %>
+                <% end %>
               </div>
             <% end %>
           <div class="comment">
