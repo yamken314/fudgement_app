@@ -4,7 +4,7 @@
       <div class="profile_container">
         <div class="image_container">
           <span class="edit"><%= f.submit "更新", class: "btn-border-sm" %></span>
-          <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+          <div id="" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
             <% if @user.profile_image.attached? %>
               <%= image_tag @user.profile_image.variant(resize: "400x400").processed, class: "image", id: :img_prev %>
             <% else %>
