@@ -63,13 +63,11 @@
           <div class="comment">
             <p><%= micropost.content %></p>
           </div>
-          <div class="row">
-            <% micropost.choices.includes(:user)&.each do |choice| %>
-              <div id="choice_<%= choice.id %>">
-                <%= render 'static_pages/choice', choice: choice %>
-              </div>
-            <% end %>
-          </div>
+          <% micropost.choices.includes(:user)&.each do |choice| %>
+            <div id="choice_<%= choice.id %>">
+              <%= render 'static_pages/choice', choice: choice %>
+            </div>
+          <% end %>
         </div>
     </div>
   <% end %>

@@ -398,8 +398,11 @@ input {
 
 .vote {
   @include btn_orange;
-  a {
+  p {
+    word-break: break-all;
+    white-space: pre-wrap;
     color: black;
+    margin: 5px;
   }
 }
 .vote:active {
@@ -407,12 +410,24 @@ input {
 }
 .voted {
   @include btn_deep_blue;
+  p {
+    word-break: break-all;
+    white-space: pre-wrap;
+    margin: 5px;
+  }
 }
 .voted:active {
   @include btn_active_deep_blue;
 }
+
+
+.choice_button {
+  display: flex;
+  margin: 10px 0;
+}
+
 button {
-  margin: 0 20px 10px;
+  margin: 0 3px;
   width: 85%;
   border: none;
   display: inline-block;
@@ -424,7 +439,6 @@ button {
   a {
     color: #fff;
     display: block;
-    padding: 1rem;
   }
 }
 table{
