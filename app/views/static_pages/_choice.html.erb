@@ -1,20 +1,49 @@
 <% if logged_in? && current_user.voted?(choice) %>
-  <button class="voted">
-    <%= link_to choice.name, choice_vote_path(choice.id), method: :delete, remote: true %>
-  </button>
-<% else %>
-  <button class="vote">
-    <%= link_to choice.name, choice_vote_path(choice.id), method: :post, remote: true %>
-  </button>
-<% end %>
-<div class="judgement-btn">
+  <div class= "choice_button">
+    <div class="judgement-btn">
+    <%= link_to choice.user do %>
+      <% if choice.user %>
+        <% if choice.user.avatar.attached? %>
+          <%= image_tag(choice.user.avatar.variant(resize: "40x40").processed, class: "avatar ") %>
+        <% else %>
+          <%= gravatar_for choice.user %>
+        <% end %>
+      <% end %>
+    <% end %>
+    </div>
+    <button class="voted">
+      <%= link_to choice_vote_path(choice.id), method: :delete, remote: true do %>
+        <p><%= choice.name %></p>
+      <% end %>
+    </button>
+  </div>
+  <div class="judgement-btn">
   <% if choice.micropost.user != current_user && choice.user == current_user %>
     <%= link_to '編集', edit_choice_path(choice.id), remote: true, class: "btn-border-sm"%>
-  <% elsif choice.user %>
-    <% if choice.user.avatar.attached? %>
-      <%= image_tag choice.user.avatar.variant(resize: "50x50").processed, class: "avatar " %>
-    <% else %>
-      <%= gravatar_for choice.user %>
+  <%end%>
+  </div>
+<% else %>
+  <div class= "choice_button">
+    <div class="judgement-btn">
+    <%= link_to choice.user do %>
+      <% if choice.user %>
+        <% if choice.user.avatar.attached? %>
+          <%= image_tag(choice.user.avatar.variant(resize: "40x40").processed, class: "avatar ") %>
+        <% else %>
+          <%= gravatar_for choice.user %>
+        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+    </div>
+    <button class="vote">
+      <%= link_to choice_vote_path(choice.id), method: :post, remote: true do %>
+        <p><%= choice.name %></p>
+      <% end %>
+    </button>
+  </div>
+  <div class="judgement-btn">
+  <% if choice.micropost.user != current_user && choice.user == current_user %>
+    <%= link_to '編集', edit_choice_path(choice.id), remote: true, class: "btn-border-sm"%>
+  <%end%>
+  </div>
+<% end %>
