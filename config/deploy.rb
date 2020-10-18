@@ -8,7 +8,7 @@ set :repo_url, "https://github.com/yamken314/Judgement_app"
 set :branch, 'master'
 
 # deploy先のディレクトリ。 
-set :deploy_to, '/var/www/rails/Judgement_app'
+set :deploy_to, '/var/www/Judgement_app'
 
 # シンボリックリンクをはるファイル。(※後述)
 set :linked_files, fetch(:linked_files, []).push('config/settings.yml')
