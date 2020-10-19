@@ -60,6 +60,10 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.6.0'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
 end
 
 group :development do
@@ -89,10 +93,6 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
   gem 'launchy', '~> 2.4.3'
-  gem 'capistrano'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rails'
-  gem 'capistrano-rbenv'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
