@@ -26,19 +26,21 @@
     <div class="comment">
       <p><%= @micropost.content %></p>
     </div>
-    <%= form_with model: @micropost, local: true do |f|%>
-    <%= render 'shared/error_messeges', object: f.object%>
-      <div id="detail-association-insertion-point">
-        <div class="judgement-btn">
-          <%= link_to_add_association 'ボタンを追加', f, :choices,
-          class: "btn-border-sm",
-          data: {
-          association_insertion_node: '#detail-association-insertion-point',
-          association_insertion_method: 'append' }
-           %>
+    <div class="row">
+      <%= form_with model: @micropost, local: true do |f|%>
+        <%= render 'shared/error_messeges', object: f.object%>
+        <div id="detail-association-insertion-point">
+          <div class="judgement-btn">
+            <%= link_to_add_association 'ボタンを追加', f, :choices,
+            class: "btn-border-sm",
+            data: {
+            association_insertion_node: '#detail-association-insertion-point',
+            association_insertion_method: 'append' }
+             %>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
     <% @choice.each do |choice| %>
       <div class="choice_show_row">
         <div id="choice_<%= choice.id %>">
