@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Choice, type: :model do
   before do
-    @micropost = FactoryBot.create(:micropost)
-    @choice = Choice.create!(name: "test", user_id: @micropost.user.id, micropost_id: @micropost.id)
+    @choice = create(:choice)
   end
   it "choiceは有効 " do
     expect(@choice).to be_valid
@@ -25,5 +24,15 @@ RSpec.describe Choice, type: :model do
     @choice.micropost_id = nil
     @choice.valid?
     expect(@choice).to_not be_valid
+  end
+
+  it "choiceの文字数が140文字以上だったら無効" do
+    @choice.name = "a" * 141
+    expect(@choice).to_not be_valid
+  end
+
+  it "choiceの文字数が140字以内まで有効" do
+    @choice.name = "a" * 140
+    expect(@choice).to be_valid
   end
 end
