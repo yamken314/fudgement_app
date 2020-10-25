@@ -32,4 +32,9 @@ class SessionsController < ApplicationController
     flash[:succces] = "ゲストログインしました。"
     redirect_to root_path
   end
+
+  def failure
+    flash[:notice] = "ログインをキャンセルしました。"
+    redirect_to root_path
+  end
 end
