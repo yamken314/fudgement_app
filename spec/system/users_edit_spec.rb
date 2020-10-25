@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "UsersEdit", type: :feature do
+RSpec.describe "UsersEdit", type: :system do
   let(:user) {FactoryBot.create(:user)}
   
   scenario "ユーザー編集を失敗する" do
