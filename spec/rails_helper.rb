@@ -59,4 +59,5 @@ RSpec.configure do |config|
   config.include IntegretionHelpers, type: :request
   config.include IntegretionHelpers, type: :system
   config.include FactoryBot::Syntax::Methods
+  config.include OmniauthMocks
 end
