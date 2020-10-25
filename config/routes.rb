@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   delete '/login', to: 'sessions#destroy'
   post '/guest_sign_in', to: 'sessions#new_guest'
   get 'auth/:provider/callback', to: 'sessions#create'
+  get "/auth/failure", to: "sessions#failure"
   resources :users do
     member do
       get :following, :followers
