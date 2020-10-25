@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "UsersSignups", type: :feature do
+RSpec.describe "UsersSignups", type: :system do
   let(:user) {FactoryBot.create(:user)}
 
   scenario "無効なユーザーのサインアップ" do
@@ -12,6 +12,4 @@ RSpec.feature "UsersSignups", type: :feature do
     click_button "新規作成"
     expect(page).to have_content "問題があります。"
   end
-
-
 end

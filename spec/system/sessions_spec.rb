@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Sessions", type: :feature do
+RSpec.describe "Sessions", type: :system do
   scenario "無効な情報にログイン" do
     visit login_path
     fill_in "Email", with: ""
