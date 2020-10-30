@@ -50,8 +50,6 @@ GEM
     aliyun-sdk (0.7.3)
       nokogiri (~> 1.6)
       rest-client (~> 2.0)
-    archive-zip (0.12.0)
-      io-like (~> 0.3.0)
     arel (9.0.0)
     ast (2.4.1)
     autoprefixer-rails (9.8.6.1)
@@ -114,9 +112,6 @@ GEM
       chronic (~> 0.10)
     chartkick (3.4.0)
     childprocess (3.0.0)
-    chromedriver-helper (2.1.1)
-      archive-zip (~> 0.10)
-      nokogiri (~> 1.8)
     chronic (0.10.2)
     cocoon (1.2.15)
     coderay (1.1.3)
@@ -319,7 +314,6 @@ GEM
     image_processing (1.9.1)
       mini_magick (>= 4.9.3, < 5)
       ruby-vips (>= 2.0.13, < 3)
-    io-like (0.3.1)
     ipaddress (0.8.3)
     jbuilder (2.10.0)
       activesupport (>= 5.0.0)
@@ -578,7 +572,6 @@ DEPENDENCIES
   capybara (>= 2.15)
   chartable
   chartkick
-  chromedriver-helper
   cocoon
   coffee-rails (~> 4.2)
   dotenv-rails

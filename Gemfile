@@ -91,7 +91,6 @@ group :test do
   # gem 'selenium-webdriver'
   gem 'webdrivers'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
   gem 'launchy', '~> 2.4.3'
 end
 
