@@ -63,7 +63,7 @@
           <div class="comment">
             <p><%= micropost.content %></p>
           </div>
-          <% micropost.choices.includes(:user)&.each do |choice| %>
+          <% micropost.choices.includes(user: {avatar_attachment: :blob})&.each do |choice| %>
             <div id="choice_<%= choice.id %>">
               <%= render 'static_pages/choice', choice: choice %>
             </div>

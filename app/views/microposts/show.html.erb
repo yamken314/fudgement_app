@@ -41,7 +41,7 @@
         </div>
       <% end %>
     </div>
-    <% @choice.each do |choice| %>
+    <% @choice.includes(user: {avatar_attachment: :blob}).each do |choice| %>
       <div class="choice_show_row">
         <div id="choice_<%= choice.id %>">
           <%= render 'static_pages/choice', choice: choice %>
