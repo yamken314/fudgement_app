@@ -1,5 +1,5 @@
 <div class="nested-fields col-md-12">
-  <%= f.text_area :name, class: "number" %>
+  <%= f.text_area :name, placeholder: "Choiceボタン名を記入して下さい", class: "number" %>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <div class="judgement-btn">
     <%= link_to_remove_association "削除", f, data: { confirm: "『#{f.object.name}』を削除しますか？", cancel: 'やめる', title: '削除確認' }, class: "btn-border-sm"%>
