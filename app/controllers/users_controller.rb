@@ -12,9 +12,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.all.with_attached_image.sorted_desc.page(params[:page])
-    @colors = ['post_details_1','post_details_2', 'post_details_3', 'post_details_4']
+    @colors = %w[post_details_1 post_details_2 post_details_3 post_details_4]
   end
-  
+
   def new
     @user = User.new
   end
@@ -36,14 +36,9 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.attributes = user_params
-    if @user.save(context: :password)
-        flash[:succces] = "編集しました"
-        redirect_to @user
-    elsif user_params[:avatar && :profile_image && :introduction && :name].present?
-        @user.update(user_params)
-        flash[:succces] = "編集しました"
-        redirect_to @user
+    if @user.update(user_params)
+      flash[:succces] = "編集しました"
+      redirect_to @user
     else
       render 'edit'
     end
@@ -82,7 +77,6 @@ class UsersController < ApplicationController
     action_name == 'delete_profile_image' ? @user.profile_image.purge : @user.avatar.purge
     redirect_to @user
   end
-
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :introduction, :profile_image, :avatar)
