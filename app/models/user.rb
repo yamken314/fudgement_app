@@ -17,14 +17,14 @@ class User < ApplicationRecord
   attr_accessor :remember_token
   validates :name, presence: true, length: { maximum: 50 }, unless: :uid?
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  before_save :downcase_email, unless: :uid? 
+  before_save :downcase_email, unless: :uid?
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false },
                     unless: :uid?
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, on: :password, unless: :uid?
-
+  validate  :validate_avatar, :validate_profile_image
   def downcase_email
     self.email = email.downcase
   end
@@ -69,10 +69,34 @@ class User < ApplicationRecord
     votes.where(choice_id: choice.id).exists?
   end
 
+  def validate_avatar
+    return unless avatar.attached?
+
+    if avatar.blob.byte_size > 10.megabytes
+      avatar.purge
+      errors.add(:avatar, 'ファイルのサイズが大きすぎます(10MB以内)')
+    elsif !avatar_image?
+      avatar.purge
+      errors.add(:avatar, 'ファイルが対応している画像データではありません')
+    end
+  end
+
+  def validate_profile_image
+    return unless profile_image.attached?
+
+    if profile_image.blob.byte_size > 10.megabytes
+      profile_image.purge
+      errors.add(:profile_image, 'ファイルのサイズが大きすぎます(10MB以内)')
+    elsif !profile_image?
+      profile_image.purge
+      errors.add(:profile_image, 'ファイルが対応している画像データではありません')
+    end
+  end
+
   private
-  
+
   def self.guest
-    find_or_create_by!(name: 'ゲスト',email: 'guest1@example.com') do |user|
+    find_or_create_by!(name: 'ゲスト', email: 'guest1@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
     end
   end
@@ -87,7 +111,6 @@ class User < ApplicationRecord
     image = uri.open
     password = SecureRandom.urlsafe_base64
     email = User.dummy_email(auth)
-  
     self.find_or_create_by(provider: provider, uid: uid) do |user|
       user.name = name
       user.avatar.attach(io: image, filename: "#{user.name}_profile.png")
@@ -98,5 +121,13 @@ class User < ApplicationRecord
 
   def self.dummy_email(auth)
     "#{auth.uid}-#{auth.provider}@example.com"
+  end
+
+  def avatar_image?
+    %w[image/jpg image/jpeg image/gif image/png].include?(avatar.blob.content_type)
+  end
+
+  def profile_image?
+    %w[image/jpg image/jpeg image/gif image/png].include?(profile_image.blob.content_type)
   end
 end
