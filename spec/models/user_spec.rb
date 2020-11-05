@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let(:user) { build(:user, name: "yamamoto", email: "yamamoto@email.com", password: "yamamoto") }
-
   it "userは有効" do
     expect(user).to be_valid
   end
@@ -81,5 +80,43 @@ RSpec.describe User, type: :model do
 
   it "authenticated?実行時,ユーザーのダイジェストがnilならfalseを返す" do
     expect(user.authenticated?('')).to eq false
+  end
+
+  describe "avatarは" do
+    it "有効な画像を登録出来る" do
+      user.avatar = fixture_file_upload("spec/support/assets/test_image.jpg")
+      expect(user.avatar).to be_valid
+    end
+
+    it "10MB超える画像は登録出来ない" do
+      user.avatar = fixture_file_upload("spec/support/assets/10megabytes.jpg")
+      user.valid?
+      expect(user.errors[:avatar]).to include 'ファイルのサイズが大きすぎます(10MB以内)'
+    end
+
+    it "ファイルの種類がjpeg, jpg, png, gif以外の画像は登録出来ない" do
+      user.avatar = fixture_file_upload("spec/support/assets/invalid_file.pdf")
+      user.valid?
+      expect(user.errors[:avatar]).to include "ファイルが対応している画像データではありません"
+    end
+  end
+
+  describe "profile_imageは" do
+    it "有効な画像を登録出来る" do
+      user.profile_image = fixture_file_upload("spec/support/assets/test_image.jpg")
+      expect(user.profile_image).to be_valid
+    end
+
+    it "10MB超える画像は登録出来ない" do
+      user.profile_image = fixture_file_upload("spec/support/assets/10megabytes.jpg")
+      user.valid?
+      expect(user.errors[:profile_image]).to include 'ファイルのサイズが大きすぎます(10MB以内)'
+    end
+
+    it "ファイルの種類がjpeg, jpg, png, gif以外の画像は登録出来ない" do
+      user.profile_image = fixture_file_upload("spec/support/assets/invalid_file.pdf")
+      user.valid?
+      expect(user.errors[:profile_image]).to include "ファイルが対応している画像データではありません"
+    end
   end
 end
