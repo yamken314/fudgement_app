@@ -14,4 +14,10 @@ module IntegretionHelpers
     post login_path, params: {session: {email: user.email,
                                         password: user.password}}
   end
+
+  def post_content
+    click_link "Judgement"
+    fill_in "コメントを記入して下さい", with: "test"
+    fill_in "Choiceボタン名を記入して下さい", with: "choice"
+  end
 end
